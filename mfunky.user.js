@@ -1,14 +1,12 @@
 // ==UserScript==
 // @name Cotg Mfunky
 // @namespace https://github.com/Mohnki/Mfunky
-// @version 1.0.1
+// @version 1.0.2
 // @description Cotg Mfunky
 // @author Mohnki
+// @match https://w16.crownofthegods.com
 // @match https://w15.crownofthegods.com
 // @match https://w14.crownofthegods.com
-// @match https://w13.crownofthegods.com
-// @match https://w12.crownofthegods.com
-// @match https://w11.crownofthegods.com
 // @include https://w/*.crownofthegods.com/World*
 // @grant none
 // @updateURL https://github.com/Mohnki/Mfunky/raw/master/mfunky.user.js
