@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg Mfunky
-// @namespace https://github.com/Dkhub85/COTG-Dfunky
-// @version 1.0.1
+// @namespace https://github.com/Mohnki/Mfunky
+// @version 1.0.0
 // @description Cotg Mfunky
 // @author Mohnki
 // @match https://w15.crownofthegods.com
@@ -11,8 +11,8 @@
 // @match https://w11.crownofthegods.com
 // @include https://w/*.crownofthegods.com/World*
 // @grant none
-// @updateURL https://raw.githubusercontent.com/DKhub85/COTG-Dfunky/master/Dfunky.user.js
-// @downloadURL https://raw.githubusercontent.com/DKhub85/COTG-Dfunky/master/Dfunky.user.js
+// @updateURL https://github.com/Mohnki/Mfunky/raw/master/mfunky.user.js
+// @downloadURL https://github.com/Mohnki/Mfunky/raw/master/mfunky.user.js
 // ==/UserScript==
 
 (function() {
