@@ -4,9 +4,10 @@
 // @version 1.0.3
 // @description Cotg Mfunky
 // @author Mohnki
-// @match https://w16.crownofthegods.com
-// @match https://w15.crownofthegods.com
-// @match https://w14.crownofthegods.com
+// @match https://w12.crownofthegods.com
+// @match https://w19.crownofthegods.com
+// @match https://w18.crownofthegods.com
+// @match https://w17.crownofthegods.com
 // @include https://w/*.crownofthegods.com/World*
 // @grant none
 // @updateURL https://github.com/Mohnki/Mfunky/raw/master/mfunky.user.js
