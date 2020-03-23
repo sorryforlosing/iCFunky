@@ -7,8 +7,8 @@
 // @match https://w19.crownofthegods.com
 // @include https://w/*.crownofthegods.com/World*
 // @grant none
-// @updateURL https://github.com/Mohnki/Mfunky/raw/master/mfunky.user.js
-// @downloadURL https://github.com/Mohnki/Mfunky/raw/master/mfunky.user.js
+// @updateURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
+// @downloadURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
 // ==/UserScript==
 
 (function() {
