@@ -3147,9 +3147,40 @@
                 else{loot1=other_loot;}
                 var total_loot= Math.ceil((loot1[Number(dunglvl)-1] * ((1-Number(progress)/100)+1))*1.02);
                 $("#dungloctab").find(".addraiwc td:nth-child(4)").html("<button id='raid115' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>115%</button>");
+				$("#dungloctab").find(".addraiwc td:nth-child(3)").html("<button id='raid100' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>100%</button>");
                 $("#dungloctab").find(".addraiwc td:nth-child(2)").html("<button id='raidAll' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>Use All TS</button>");
                 //              var troops = cotg.city.troops();
                 var home;
+				$("#raid100").click(function(){
+                    var i=0;
+                    var home_loot=0;
+                    var km=[];
+                    for(var x in citytc) {
+                        home=Number(citytc[x]);
+                        home_loot+=home*ttloot[i];
+                        km.push(home);
+                        i+=1;
+                        if (i === 17) { break; }
+                    }
+                    var loot_115=Math.ceil(total_loot*1.00);
+                    if(home_loot>loot_115){
+                        var option_numbers=Math.floor(home_loot/loot_115);
+                        if(option_numbers<count){
+                            $("#WCcomcount").val(option_numbers);
+                        }else{$("#WCcomcount").val(count);}
+                        var templ1=((home_loot/loot_115)*100)/option_numbers;
+                        var templ2=((templ1-100)/templ1)*100;
+                        for(var i in km){
+                            if(km[i]!==0){
+                                var templ3=km[i]/option_numbers;
+                                km[i]=Math.floor(templ3*(1-(templ2/100)));
+                                $("#rval"+i).val(km[i]);
+                                if(km[14]){$("#rval14").val("0");}
+                            }
+                        }
+                        carry_percentage(total_loot);
+                    }
+                });
                 $("#raid115").click(function(){
                     var i=0;
                     var home_loot=0;
