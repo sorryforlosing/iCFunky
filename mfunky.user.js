@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg Mfunky
 // @namespace https://github.com/Mohnki/Mfunky
-// @version 1.0.5
+// @version 1.0.6
 // @description Cotg Mfunky
 // @author Mohnki
 // @match https://w19.crownofthegods.com
