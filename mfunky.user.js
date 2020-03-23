@@ -3616,7 +3616,7 @@
 						remarks: "Cabins",
 						notes: "Building",
 						troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-						res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,200000]
+						res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,wood_storage,stone_storage,iron_storage,food_storage]
                     },
 					{
 						name: "Inn Storage",
