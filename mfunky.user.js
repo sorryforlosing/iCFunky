@@ -3146,7 +3146,7 @@
                 if(type_dung==="Mountain"){loot1=mountain_loot;}
                 else{loot1=other_loot;}
                 var total_loot= Math.ceil((loot1[Number(dunglvl)-1] * ((1-Number(progress)/100)+1))*1.02);
-                $("#dungloctab").find(".addraiwc td:nth-child(4)").html("<button id='raid115' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>115%</button>");
+                $("#dungloctab").find(".addraiwc td:nth-child(5)").html("<button id='raid115' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>115%</button>");
 				$("#dungloctab").find(".addraiwc td:nth-child(4)").html("<button id='raid100' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>100%</button>");
                 $("#dungloctab").find(".addraiwc td:nth-child(2)").html("<button id='raidAll' style='padding: 4px; border-radius: 8px;' class='greenb shRnTr'>Use All TS</button>");
                 //              var troops = cotg.city.troops();
