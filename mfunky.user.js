@@ -3744,7 +3744,6 @@
                 var ww=1;
 
                 for(var prefered in prefered_data){
-                    console.log(prefered_data[prefered]);
                     selectbuttsdf+='<option value="'+ww+'">'+prefered_data[prefered].name+'</option>';
                     layoutdf.push(prefered_data[prefered].string);
                     remarkdf.push(prefered_data[prefered].remarks);
