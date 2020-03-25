@@ -4017,10 +4017,10 @@
                                 resl[j][6]=$("#stonein").val();
                                 resl[j][7]=$("#ironin").val();
                                 resl[j][8]=$("#foodin").val();
-                                resl[j][19]=$("#woodin").val();;
-                                resl[j][20]=$("#stonein").val();
-                                resl[j][21]=$("#ironin").val();
-                                resl[j][22]=$("#foodin").val();
+                                resl[j][19]=($("#woodin").val() * 2);
+                                resl[j][20]=($("#stonein").val() * 2);
+                                resl[j][21]=($("#ironin").val() * 2);
+                                resl[j][22]=($("#foodin").val() * 2);
                                 for (var k in resl[j]) {
                                     aa[28+Number(k)]=resl[j][k];
                                 }
@@ -4092,10 +4092,10 @@
                                 resw[j][6]=$("#stonein").val();
                                 resw[j][7]=$("#ironin").val();
                                 resw[j][8]=$("#foodin").val();
-                                resw[j][19]=$("#woodin").val();;
-                                resw[j][20]=$("#stonein").val();
-                                resw[j][21]=$("#ironin").val();
-                                resw[j][22]=$("#foodin").val();
+                                resw[j][19]=($("#woodin").val() * 2);
+                                resw[j][20]=($("#stonein").val() * 2);
+                                resw[j][21]=($("#ironin").val() * 2);
+                                resw[j][22]=($("#foodin").val() * 2);
                                 
                                 for (var k in resw[j]) {
                                     aa[28+Number(k)]=resw[j][k];
@@ -4167,10 +4167,10 @@
                                 resd[j][6]=$("#stonein").val();
                                 resd[j][7]=$("#ironin").val();
                                 resd[j][8]=$("#foodin").val();
-                                resd[j][19]=$("#woodin").val();;
-                                resd[j][20]=$("#stonein").val();
-                                resd[j][21]=$("#ironin").val();
-                                resd[j][22]=$("#foodin").val();
+                                resd[j][19]=($("#woodin").val() * 2);
+                                resd[j][20]=($("#stonein").val() * 2);
+                                resd[j][21]=($("#ironin").val() * 2);
+                                resd[j][22]=($("#foodin").val() * 2);
 								
                                 for (var k in resd[j]) {
                                     aa[28+Number(k)]=resd[j][k];
