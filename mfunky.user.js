@@ -4017,10 +4017,10 @@
                                 resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
                                 resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
                                 resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"]);
-                                resl[j][19]=(cotg.city.resources("wood")["wood_st"] * .9);
-                                resl[j][20]=(cotg.city.resources("stone")["stone_st"] * .9);
-                                resl[j][21]=(cotg.city.resources("iron")["iron_st"] * .9);
-                                resl[j][22]=(cotg.city.resources("food")["food_st"] * .9);
+                                resl[j][19]=cotg.city.resources("wood")["wood_st"];
+                                resl[j][20]=cotg.city.resources("stone")["stone_st"];
+                                resl[j][21]=cotg.city.resources("iron")["iron_st"];
+                                resl[j][22]=cotg.city.resources("food")["food_st"];
                                 for (var k in resl[j]) {
                                     aa[28+Number(k)]=resl[j][k];
                                 }
@@ -4092,10 +4092,10 @@
                                 resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
                                 resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
                                 resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"]);
-                                resl[j][19]=(cotg.city.resources("wood")["wood_st"] * .9);
-                                resl[j][20]=(cotg.city.resources("stone")["stone_st"] * .9);
-                                resl[j][21]=(cotg.city.resources("iron")["iron_st"] * .9);
-                                resl[j][22]=(cotg.city.resources("food")["food_st"] * .9);
+                                resl[j][19]=cotg.city.resources("wood")["wood_st"];
+                                resl[j][20]=cotg.city.resources("stone")["stone_st"];
+                                resl[j][21]=cotg.city.resources("iron")["iron_st"];
+                                resl[j][22]=cotg.city.resources("food")["food_st"];
                                 
                                 for (var k in resw[j]) {
                                     aa[28+Number(k)]=resw[j][k];
@@ -4167,10 +4167,10 @@
                                 resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
                                 resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
                                 resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"]);
-                                resl[j][19]=(cotg.city.resources("wood")["wood_st"] * .9);
-                                resl[j][20]=(cotg.city.resources("stone")["stone_st"] * .9);
-                                resl[j][21]=(cotg.city.resources("iron")["iron_st"] * .9);
-                                resl[j][22]=(cotg.city.resources("food")["food_st"] * .9);
+                                resl[j][19]=cotg.city.resources("wood")["wood_st"];
+                                resl[j][20]=cotg.city.resources("stone")["stone_st"];
+                                resl[j][21]=cotg.city.resources("iron")["iron_st"];
+                                resl[j][22]=cotg.city.resources("food")["food_st"];
 								
                                 for (var k in resd[j]) {
                                     aa[28+Number(k)]=resd[j][k];
