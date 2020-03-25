@@ -4222,10 +4222,14 @@
         }
         res[14]=nearesthub;
         res[15]=nearesthub;
-        res[5]=$("#woodin").val();
-        res[6]=$("#stonein").val();
-        res[7]=$("#ironin").val();
-        res[8]=$("#foodin").val();
+        res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_stg"] * .50);
+        res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_stg"] * .50);
+        res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_stg"] * .50);
+        res[8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_stg"] * .50);
+		res[j][19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_stg"] * .75);
+        res[j][20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_stg"] * .75);
+        res[j][21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_stg"] * .75);
+        res[j][22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_stg"] * .75);
         for (var k in res) {
             aa[28+Number(k)]=res[k];
         }
