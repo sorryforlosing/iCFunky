@@ -4013,10 +4013,10 @@
                                 resl[j][15]=0;
                             }
                             if ($("#addres").prop("checked")==true) {
-                                resl[j][5]=Math.min($("#woodin").val(), cotg.city.resources("wood")["wood_st"]);
-                                resl[j][6]=Math.min($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
-                                resl[j][7]=Math.min($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
-                                resl[j][8]=Math.min($("#foodin").val(), cotg.city.resources("food")["food_st"]);
+                                resl[j][5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"]);
+                                resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
+                                resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
+                                resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"]);
                                 resl[j][19]=(cotg.city.resources("wood")["wood_st"] * .9);
                                 resl[j][20]=(cotg.city.resources("stone")["stone_st"] * .9);
                                 resl[j][21]=(cotg.city.resources("iron")["iron_st"] * .9);
@@ -4088,10 +4088,10 @@
                                 resw[j][15]=0;
                             }
                             if ($("#addres").prop("checked")==true) {
-                                resl[j][5]=Math.min($("#woodin").val(), cotg.city.resources("wood")["wood_st"]);
-                                resl[j][6]=Math.min($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
-                                resl[j][7]=Math.min($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
-                                resl[j][8]=Math.min($("#foodin").val(), cotg.city.resources("food")["food_st"]);
+                                resl[j][5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"]);
+                                resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
+                                resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
+                                resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"]);
                                 resl[j][19]=(cotg.city.resources("wood")["wood_st"] * .9);
                                 resl[j][20]=(cotg.city.resources("stone")["stone_st"] * .9);
                                 resl[j][21]=(cotg.city.resources("iron")["iron_st"] * .9);
@@ -4163,10 +4163,10 @@
                                 resd[j][15]=0;
                             }
                             if ($("#addres").prop("checked")==true) {
-                                resl[j][5]=Math.min($("#woodin").val(), cotg.city.resources("wood")["wood_st"]);
-                                resl[j][6]=Math.min($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
-                                resl[j][7]=Math.min($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
-                                resl[j][8]=Math.min($("#foodin").val(), cotg.city.resources("food")["food_st"]);
+                                resl[j][5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"]);
+                                resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"]);
+                                resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"]);
+                                resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"]);
                                 resl[j][19]=(cotg.city.resources("wood")["wood_st"] * .9);
                                 resl[j][20]=(cotg.city.resources("stone")["stone_st"] * .9);
                                 resl[j][21]=(cotg.city.resources("iron")["iron_st"] * .9);
