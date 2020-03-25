@@ -4013,14 +4013,14 @@
                                 resl[j][15]=0;
                             }
                             if ($("#addres").prop("checked")==true) {
-                                resl[j][5]=$("#woodin").val();
-                                resl[j][6]=$("#stonein").val();
-                                resl[j][7]=$("#ironin").val();
-                                resl[j][8]=$("#foodin").val();
-                                resl[j][19]=($("#woodin").val() * 2);
-                                resl[j][20]=($("#stonein").val() * 2);
-                                resl[j][21]=($("#ironin").val() * 2);
-                                resl[j][22]=($("#foodin").val() * 2);
+								resl[j][5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
+								resl[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
+								resl[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
+								resl[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .50);
+								resl[j][19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .75);
+								resl[j][20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
+								resl[j][21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
+								resl[j][22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
                                 for (var k in resl[j]) {
                                     aa[28+Number(k)]=resl[j][k];
                                 }
@@ -4088,14 +4088,14 @@
                                 resw[j][15]=0;
                             }
                             if ($("#addres").prop("checked")==true) {
-                                resw[j][5]=$("#woodin").val();
-                                resw[j][6]=$("#stonein").val();
-                                resw[j][7]=$("#ironin").val();
-                                resw[j][8]=$("#foodin").val();
-                                resw[j][19]=($("#woodin").val() * 2);
-                                resw[j][20]=($("#stonein").val() * 2);
-                                resw[j][21]=($("#ironin").val() * 2);
-                                resw[j][22]=($("#foodin").val() * 2);
+								resw[j][5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
+								resw[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
+								resw[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
+								resw[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .50);
+								resw[j][19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .75);
+								resw[j][20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
+								resw[j][21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
+								resw[j][22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
                                 
                                 for (var k in resw[j]) {
                                     aa[28+Number(k)]=resw[j][k];
@@ -4163,14 +4163,14 @@
                                 resd[j][15]=0;
                             }
                             if ($("#addres").prop("checked")==true) {
-                                resd[j][5]=$("#woodin").val();
-                                resd[j][6]=$("#stonein").val();
-                                resd[j][7]=$("#ironin").val();
-                                resd[j][8]=$("#foodin").val();
-                                resd[j][19]=($("#woodin").val() * 2);
-                                resd[j][20]=($("#stonein").val() * 2);
-                                resd[j][21]=($("#ironin").val() * 2);
-                                resd[j][22]=($("#foodin").val() * 2);
+								resd[j][5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
+								resd[j][6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
+								resd[j][7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
+								resd[j][8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .50);
+								resd[j][19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .75);
+								resd[j][20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
+								resd[j][21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
+								resd[j][22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
 								
                                 for (var k in resd[j]) {
                                     aa[28+Number(k)]=resd[j][k];
@@ -4222,14 +4222,14 @@
         }
         res[14]=nearesthub;
         res[15]=nearesthub;
-        res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_stg"] * .50);
-        res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_stg"] * .50);
-        res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_stg"] * .50);
-        res[8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_stg"] * .50);
-		res[19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_stg"] * .75);
-        res[20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_stg"] * .75);
-        res[21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_stg"] * .75);
-        res[22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_stg"] * .75);
+        res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
+        res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
+        res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
+        res[8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .50);
+		res[19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .75);
+        res[20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
+        res[21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
+        res[22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
         for (var k in res) {
             aa[28+Number(k)]=res[k];
         }
@@ -4272,10 +4272,14 @@
         }
         res[14]=nearesthub;
         res[15]=nearesthub;
-        res[5]=$("#woodin").val();
-        res[6]=$("#stonein").val();
-        res[7]=$("#ironin").val();
-        res[8]=$("#foodin").val();
+		res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
+        res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
+        res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
+        res[8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .50);
+		res[19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .75);
+        res[20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
+        res[21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
+        res[22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
         for (var k in res) {
             aa[28+Number(k)]=res[k];
         }
