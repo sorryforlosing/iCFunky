@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg Mfunky
 // @namespace https://github.com/Mohnki/Mfunky
-// @version 1.0.8
+// @version 1.0.9
 // @description Cotg Mfunky
 // @author Mohnki
 // @match https://w19.crownofthegods.com
@@ -3116,9 +3116,37 @@
         var percentage_loot_takable=Math.ceil((troop_loot/total_loot)*100);
         $("#dungloctab").find(".addraiwc td:nth-child(3)").text("carry:"+percentage_loot_takable+"%");
     }
+function getHighestTrooptype()
+    {
+        let max = 0;
+        var maxtype = "";
+        var troops = cotg.city.troops();
+        $.each(troops, function( i, value) {
+            if (troops[i].total > max)
+            {
+                max = troops[i].total;
+                maxtype = i;
+            }
+        });
+        return maxtype;
+    }
     function getDugRows(){
         $('#dungloctab th:contains("Distance")').click();
         $('#dungloctab th:contains("Distance")').click();
+        $("#dungloctab tr").each(function() {
+          var buttont=$(this).find("button");
+            var bid=buttont.attr('id');
+            var temp3=$(this).find("td:nth-child(2)").text();//lvl
+            var temp4=$(this).find("td:nth-child(3)").text();//progress
+            var tempz2=temp3.split(' ');
+            var temp1=tempz2[1];
+            var temp2=temp4.match(/\d+/gi);
+            var tempz1=tempz2[2];
+            var troopty = getHighestTrooptype();
+          if ((bid && tempz1 == "Mountain") && (troopty !== "vanquisher" &&  troopty !== "ranger" && troopty !== "triari")) {$(this).remove();}
+          if ((bid && tempz1 == "Forest") && (troopty !== "arbalist" &&  troopty !== "horseman" && troopty !== "praetor")) {$(this).remove();}
+          if ((bid && tempz1 == "Hill") && (troopty !== "druid" &&  troopty !== "priestess")) {$(this).remove();}
+        });
         $("#dungloctab tr").each(function() {
             var buttont=$(this).find("button");
             var buttonid=buttont.attr('id');
