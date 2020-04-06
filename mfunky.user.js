@@ -3251,43 +3251,7 @@ function getHighestTrooptype()
                         if (i === 17) { break; }
                     }
                     var loot_95=Math.ceil(total_loot*0.95);
-					var loot_100=Math.ceil(total_loot*1.00);
-					var loot_115=Math.ceil(total_loot*1.15);
-					if(home_loot>loot_115){
-						var option_numbers=Math.floor(home_loot/loot_115);
-                        if(option_numbers<count){
-                            $("#WCcomcount").val(option_numbers);
-                        }else{$("#WCcomcount").val(count);}
-                        var templ1=((home_loot/loot_115)*100)/option_numbers;
-                        var templ2=((templ1-100)/templ1)*100;
-                        for(var i in km){
-                            if(km[i]!==0){
-                                var templ3=km[i]/option_numbers;
-                                km[i]=Math.floor(templ3*(1-(templ2/100)));
-                                $("#rval"+i).val(km[i]);
-                                if(km[14]){$("#rval14").val("0");}
-                            }
-                        }
-                        carry_percentage(total_loot);
-                    }
-					if(home_loot>loot_100){
-                        var option_numbers=Math.floor(home_loot/loot_100);
-                        if(option_numbers<count){
-                            $("#WCcomcount").val(option_numbers);
-                        }else{$("#WCcomcount").val(count);}
-                        var templ1=((home_loot/loot_100)*100)/option_numbers;
-                        var templ2=((templ1-100)/templ1)*100;
-                        for(var i in km){
-                            if(km[i]!==0){
-                                var templ3=km[i]/option_numbers;
-                                km[i]=Math.floor(templ3*(1-(templ2/100)));
-                                $("#rval"+i).val(km[i]);
-                                if(km[14]){$("#rval14").val("0");}
-                            }
-                        }
-                        carry_percentage(total_loot);
-                    }
-                    if(home_loot>loot_95){
+					if(home_loot>loot_95){
                         var option_numbers=Math.floor(home_loot/loot_95);
                         if(option_numbers<count){
                             $("#WCcomcount").val(option_numbers);
