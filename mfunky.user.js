@@ -4,6 +4,7 @@
 // @version 1.0.9
 // @description Cotg Mfunky
 // @author Mohnki
+// @match https://w18.crownofthegods.com
 // @match https://w19.crownofthegods.com
 // @include https://w/*.crownofthegods.com/World*
 // @grant none
