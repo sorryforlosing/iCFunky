@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg Mfunky
 // @namespace https://github.com/Mohnki/Mfunky
-// @version 1.0.9
+// @version 1.0.10
 // @description Cotg Mfunky
 // @author Mohnki
 // @match https://w18.crownofthegods.com
@@ -947,13 +947,14 @@
         var contoff=Number($("#noffx").val());
         var cit=[[]];
         var troopmail=[[]];
-        var counteroff=0;
+        var counteroff=0;		
         for (var i in t) {
             var tid=t[i].id;
+			var castle=t[i].castle;
             var tempx=Number(tid % 65536);
             var tempy=Number((tid-tempx)/65536);
             var tcont=Number(Math.floor(tempx/100)+10*Math.floor(tempy/100));
-            if (contoff==tcont) {
+            if (contoff==tcont && castle) {
                 if (t[i].Druid_total>0 || t[i].Horseman_total>0 || t[i].Sorcerer_total>0 || t[i].Vanquisher_total>0 || t[i].Scorpion_total>0 || t[i].Ram_total>0) {
                     counteroff+=1;
                     var tempt=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
@@ -971,7 +972,7 @@
                     cit.push([tempx,tempy,tempts,tempt,t[i].c,tid]);
                 }
             }
-            if(contoff=="99"){
+            if(contoff=="99" && castle){
                 if (t[i].Warship_total>0  || t[i].Galley_total>0) {
                     counteroff+=1;
                     var tempt=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
