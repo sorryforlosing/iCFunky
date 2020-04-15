@@ -950,7 +950,7 @@
         var counteroff=0;		
         for (var i in t) {
             var tid=t[i].id;
-			var castle=t[i].castle;
+			var castle=cotg.player.citylist(0)[t[i].id].castle;
             var tempx=Number(tid % 65536);
             var tempy=Number((tid-tempx)/65536);
             var tcont=Number(Math.floor(tempx/100)+10*Math.floor(tempy/100));
