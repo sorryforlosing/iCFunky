@@ -3497,7 +3497,7 @@ function getHighestTrooptype()
     // setting layouts
     $(document).ready(function() {
         $("#citynotes").draggable({ handle: ".popUpBar" , containment: "window", scroll: false});
-        $('#citynotes').height('310px');
+        $('#citynotes').height('410px');
         $('#citynotes').width('595px');
         var layoutopttab="<li id='layoutopt' class='ui-state-default ui-corner-top' role='tab' tabindex='-1' aria-controls='layoutoptBody'";
         layoutopttab+="aria-labeledby='ui-id-60' aria-selected='false' aria-expanded='false'>";
@@ -4347,6 +4347,7 @@ function getHighestTrooptype()
             aa[1]=1;
         }
         res[14]=nearesthub;
+		console.log(nearesthub);
         res[15]=$("#shub").val();
         res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
         res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
