@@ -3524,7 +3524,7 @@ function getHighestTrooptype()
         $("#nearhubAp").click(function() {
             setnearhub();
         });
-		$("setshipper").click(function() {
+		$("#setshipper").click(function() {
 			localStorage.setItem('shub', $("#shub").val());
             setshipperh();
         });
