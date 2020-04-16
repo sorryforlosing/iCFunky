@@ -3498,7 +3498,7 @@ function getHighestTrooptype()
     $(document).ready(function() {
         $("#citynotes").draggable({ handle: ".popUpBar" , containment: "window", scroll: false});
         $('#citynotes').height('310px');
-        $('#citynotes').width('595px');
+        $('#citynotes').width('495px');
         var layoutopttab="<li id='layoutopt' class='ui-state-default ui-corner-top' role='tab' tabindex='-1' aria-controls='layoutoptBody'";
         layoutopttab+="aria-labeledby='ui-id-60' aria-selected='false' aria-expanded='false'>";
         layoutopttab+="<a href='#layoutoptBody' class='ui-tabs-anchor' role='presentation' tabindex='-1' id='ui-id-60'>Layout Options</a></li>";
@@ -3509,10 +3509,7 @@ function getHighestTrooptype()
         layoutoptbody+="<td><input id='addhub' class='clsubopti' type='checkbox'> Set Nearest Hub With layout</td></tr><tr><td>Select Hubs list: </td><td id='selhublist'></td><td>";
         layoutoptbody+="<button id='nearhubAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Set Nearest Hub</button><button id='infantryAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Infantry setup</button></td></tr></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
-        layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
-        layoutoptbody+="<button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
-        layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='shub' type='text' style='width:150px;' value='city name'></td></tr>";
-        layoutoptbody+="<td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
+        layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
         var tabs = $( "#CNtabs" ).tabs();
@@ -3523,10 +3520,6 @@ function getHighestTrooptype()
         $("#buttd").append(layoptbut);
         $("#nearhubAp").click(function() {
             setnearhub();
-        });
-		$("setshipper").click(function() {
-			localStorage.setItem('shub', $("#shub").val());
-            setshipperh();
         });
         $("#infantryAp").click(function() {
             setinfantry();
@@ -3553,9 +3546,6 @@ function getHighestTrooptype()
         if (localStorage.getItem('foodin')) {
             $("#foodin").val(localStorage.getItem('foodin'));
         }
-		if (localStorage.getItem('shub')) {
-			$("shub").val(localStorage.getItem('shub'));
-		}
         if (localStorage.getItem('atroops')) {
             if (localStorage.getItem('atroops')==1) {
                 $("#addtroops").prop( "checked", true );
@@ -3590,26 +3580,6 @@ function getHighestTrooptype()
                 $("#addhub").prop( "checked", true );
             }
         }
-		if (localStorage.getItem('swood')) {
-			if (localStorage.getItem('swood')==1) {
-				$("#shipwood").prop( "checked", true);
-			}
-		}
-		if (localStorage.getItem('sstone')) {
-			if (localStorage.getItem('sstone')==1) {
-				$("#shipstone").prop( "checked", true);
-			}
-		}
-		if (localStorage.getItem('siron')) {
-			if (localStorage.getItem('siron')==1) {
-				$("#shipiron").prop( "checked", true);
-			}
-		}
-		if (localStorage.getItem('sfood')) {
-			if (localStorage.getItem('sfood')==1) {
-				$("#shipfood").prop( "checked", true);
-			}
-		}
         $("#addnotes").change(function() {
             if ($("#addnotes").prop( "checked")==true) {
                 localStorage.setItem('anotes',1);
@@ -3644,26 +3614,6 @@ function getHighestTrooptype()
             if ($("#addhub").prop( "checked")==true) {
                 localStorage.setItem('ahub',1);
             } else {localStorage.setItem('ahub',0);}
-        });
-		$("#shipwood").change(function() {
-            if ($("#shipwood").prop( "checked")==true) {
-                localStorage.setItem('swood',1);
-            } else {localStorage.setItem('swood',0);}
-        });
-		$("#shipstone").change(function() {
-            if ($("#shipstone").prop( "checked")==true) {
-                localStorage.setItem('sstone',1);
-            } else {localStorage.setItem('sstone',0);}
-        });
-		$("#shipiron").change(function() {
-            if ($("#shipiron").prop( "checked")==true) {
-                localStorage.setItem('siron',1);
-            } else {localStorage.setItem('siron',0);}
-        });
-		$("#shipfood").change(function() {
-            if ($("#shipfood").prop( "checked")==true) {
-                localStorage.setItem('sfood',1);
-            } else {localStorage.setItem('sfood',0);}
         });
 
         $("#editspncn").click(function() {
@@ -4302,52 +4252,6 @@ function getHighestTrooptype()
         }
         res[14]=nearesthub;
         res[15]=nearesthub;
-        res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
-        res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
-        res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
-        res[8]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .50);
-		res[19]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .75);
-        res[20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
-        res[21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
-        res[22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
-        for (var k in res) {
-            aa[28+Number(k)]=res[k];
-        }
-        var dat={a:JSON.stringify(aa),b:cdata.cid};
-        jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
-    }
-	    function setshipperh() {
-        var res=[0,0,0,0,1,130000,130000,0,0,0,0,0,0,1,0,0,0,0,0,300000,300000,300000,400000];
-        var aa=city.mo;
-        var hubs={cid:[],distance:[]};
-        $.each(clc, function(key, value) {
-            if (key==$("#selHub").val()) {
-                hubs.cid=value;
-            }
-        });
-        for (var i in hubs.cid) {
-            var tempx=Number(hubs.cid[i] % 65536);
-            var tempy=Number((hubs.cid[i]-tempx)/65536);
-            hubs.distance.push(Math.sqrt((tempx-city.x)*(tempx-city.x)+(tempy-city.y)*(tempy-city.y)));
-        }
-        var mindist = Math.min.apply(Math, hubs.distance);
-        var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];
-        if ($("#addwalls").prop("checked")==true) {
-            aa[26]=1;
-        }
-        if ($("#addtowers").prop("checked")==true) {
-            aa[27]=1;
-        }
-        if ($("#addbuildings").prop("checked")==true) {
-            aa[51]=[1,$("#cablev").val()];
-            aa[68]=[1,10];
-            aa[69]=[1,10];
-            aa[70]=[1,10];
-            aa[71]=[1,10];
-            aa[1]=1;
-        }
-        res[14]=nearesthub;
-        res[15]=$("#shub").val();
         res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
         res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
         res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
