@@ -3834,7 +3834,7 @@ function getHighestTrooptype()
                 selectbuttsw+='<option value="'+cww+'">vanqs+ports+senator</option>';
                 layoutsw.push("[ShareString.1.3];########################-------#-------#####--------#--------###---------#---------##---------#---------##------#######------##-----##BBBBB##-----##----##BBGBGBB##----##----#BGBGBGBGB#----##----#BGBBBBBGB#----#######BBBGTGBBB#######----#BGBBBBBGB#PPJX##----#BGBGBGBGB#BBBB##----##BBGBGBB##BBBB##-----##BBBBB##BBBBB##------#######-BRRBB##---------#----R##RZ##---------#----R###R###--------#----SR#######-------#----MSR########################");
                 remarksw.push("vanqs+senator+ports"); notesw.push("264k infantry @ 10 days");
-                troopcounw.push([0,0,0,100000,0,164000,0,0,0,0,0,0,0,0,0,0,0]);
+                troopcounw.push([0,0,0,0,0,264000,0,0,0,0,0,0,0,0,0,0,0]);
                 resw.push([0,0,0,0,1,150000,220000,150000,350000,0,0,0,0,1,0,0,0,0,0,150000,220000,150000,350000]);
                 cww++;
                 selectbuttsw+='<option value="'+cww+'">main hub</option>';
