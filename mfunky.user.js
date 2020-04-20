@@ -3146,8 +3146,8 @@ function getHighestTrooptype()
             var tempz1=tempz2[2];
             var troopty = getHighestTrooptype();
           if ((bid && tempz1 == "Mountain") && (troopty !== "vanquisher" &&  troopty !== "ranger" && troopty !== "triari" && troopty !== "priestess")) {$(this).remove();}
-          if ((bid && tempz1 == "Forest") && (troopty !== "arbalist" &&  troopty !== "horseman" && troopty !== "praetor") && troopty !== "scout") {$(this).remove();}
-          if ((bid && tempz1 == "Hill") && (troopty !== "druid" &&  troopty !== "sorcerer")) {$(this).remove();}
+          if ((bid && tempz1 == "Forest") && (troopty !== "vanquisher" && troopty !== "arbalist" &&  troopty !== "horseman" && troopty !== "praetor") && troopty !== "scout") {$(this).remove();}
+          if ((bid && tempz1 == "Hill") && (troopty !== "vanquisher" && troopty !== "druid" &&  troopty !== "sorcerer")) {$(this).remove();}
 		});
         $("#dungloctab tr").each(function() {
             var buttont=$(this).find("button");
