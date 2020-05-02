@@ -4268,6 +4268,8 @@ function getHighestTrooptype()
         }
         res[14]=nearesthub;
         res[15]=nearesthub;
+		console.log(res);
+		console.log(aa);
         res[5]=Math.max($("#woodin").val(), cotg.city.resources("wood")["wood_st"] * .50);
         res[6]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .50);
         res[7]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .50);
