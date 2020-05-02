@@ -26,29 +26,29 @@
 25 
 26 build wall
 27 build fortifications
-28 Wood only recieve
-29 Stone only recieve
-30 Iron only recieve
-31 Food only recieve
+28 Hub Wood only recieve
+29 Hub Stone only recieve
+30 Hub Iron only recieve
+31 Hub Food only recieve
 32 Request all resources from same city
-33 Wood Recieve
-34 Stone Recieve
-35 Iron Recieve
-36 Food Recieve
-37 Wood only send
-38 Stone only send
-39 Iron only send
-40 Food only send
+33 Amount Wood Recieve
+34 Amount Stone Recieve
+35 Amount Iron Recieve
+36 Amount Food Recieve
+37 Hub Wood only send
+38 Hub Stone only send
+39 Hub Iron only send
+40 Hub Food only send
 41 Send all resources to same city
-42 hub 1
-43 hub 2
+42 Single hub recieve
+43 Single hub send
 44 Protect target amounts
 45 Reserve carts
 46 Reserve ships
-47 Wood send
-48 Stone Send
-49 Iron Send
-50 Food Send
+47 Amount Wood send
+48 Amount Stone Send
+49 Amount Iron Send
+50 Amount Food Send
 51 Cabin
 52 wood
 53 stone

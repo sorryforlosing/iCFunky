@@ -3148,7 +3148,7 @@ function getHighestTrooptype()
           if ((bid && tempz1 == "Mountain") && (troopty !== "vanquisher" &&  troopty !== "ranger" && troopty !== "triari" && troopty !== "priestess")) {$(this).remove();}
           if ((bid && tempz1 == "Forest") && (troopty !== "vanquisher" && troopty !== "arbalist" &&  troopty !== "horseman" && troopty !== "praetor") && troopty !== "scout") {$(this).remove();}
           if ((bid && tempz1 == "Hill") && (troopty !== "vanquisher" && troopty !== "druid" &&  troopty !== "sorcerer")) {$(this).remove();}
-		  if ((bid && tempz1 != "Mountain") && cotg.city.troops()['triari']['total'] > 0)) {$(this).remove();}
+		  if ((bid && tempz1 != "Mountain") && cotg.city.troops()['triari']['total'] > 0) {$(this).remove();}
 		});
         $("#dungloctab tr").each(function() {
             var buttont=$(this).find("button");
@@ -4073,11 +4073,16 @@ function getHighestTrooptype()
                                 }
                             }
                             if ($("#addbuildings").prop("checked")==true) {
-                                aa[51]=[1,$("#cablev").val()];
-                                aa[1]=1;
-                            }
+								var i;
+								for (i = 0; i < 8; i++) {
+									aa[i] = 1;
+								}
+								for (i = 52; i < 75; i++) {
+									aa[i] = [1, 10];
+								}
+								aa[51]=[1,$("#cablev").val()];
+							}
 
-                            //var aaa=JSON.stringify(aa);
                             var dat={a:JSON.stringify(aa),b:cdata.cid};
                             jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
 
@@ -4149,9 +4154,15 @@ function getHighestTrooptype()
                                 }
                             }
                             if ($("#addbuildings").prop("checked")==true) {
-                                aa[51]=[1,$("#cablev").val()];
-                                aa[1]=1;
-                            }
+									var i;
+								for (i = 0; i < 8; i++) {
+									aa[i] = 1;
+								}
+								for (i = 52; i < 75; i++) {
+									aa[i] = [1, 10];
+								}
+								aa[51]=[1,$("#cablev").val()];
+							}
                             //var aaa=JSON.stringify(aa);
                             var dat={a:JSON.stringify(aa),b:cdata.cid};
                             jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
@@ -4223,11 +4234,16 @@ function getHighestTrooptype()
                                     aa[28+Number(k)]=resd[j][k];
                                 }
                             }
-                            if ($("#addbuildings").prop("checked")==true) {
-                                aa[51]=[1,$("#cablev").val()];
-                                aa[1]=1;
-                            }
-                            //var aaa=JSON.stringify(aa);
+							if ($("#addbuildings").prop("checked")==true) {
+								var i;
+								for (i = 0; i < 8; i++) {
+								aa[i] = 1;
+								}
+								for (i = 52; i < 75; i++) {
+									aa[i] = [1, 10];
+								}
+								aa[51]=[1,$("#cablev").val()];
+								}
                             var dat={a:JSON.stringify(aa),b:cdata.cid};
                             jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
                         }
@@ -4309,15 +4325,14 @@ function getHighestTrooptype()
             aa[27]=1;
         }
         if ($("#addbuildings").prop("checked")==true) {
+			var i;
+			for (i = 0; i < 8; i++) {
+			aa[i] = 1;
+			}
+			for (i = 52; i < 75; i++) {
+				aa[i] = [1, 10];
+			}
             aa[51]=[1,$("#cablev").val()];
-            aa[60]=[1,10];
-            aa[62]=[1,10];
-            aa[68]=[1,10];
-            aa[69]=[1,10];
-            aa[70]=[1,10];
-            aa[71]=[1,10];
-            aa[73]=[1,10];
-            aa[1]=1;
         }
         res[14]=nearesthub;
         res[15]=nearesthub;
