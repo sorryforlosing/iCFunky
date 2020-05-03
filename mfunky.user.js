@@ -4384,15 +4384,23 @@ function getHighestTrooptype()
         aa[41]=0;
 		if (localStorage.getItem('swood') == 1) {
 			aa[37]=$("#shub").val();
+		} else {
+			aa[37]=0;
 		}
 		if (localStorage.getItem('sstone') == 1) {
 			aa[38]=$("#shub").val();
+		} else {
+			aa[38]=0;
 		}
 		if (localStorage.getItem('siron') == 1) {
 			aa[39]=$("#shub").val();
+		} else {
+			aa[39]=0;
 		}
 		if (localStorage.getItem('sfood') == 1) {
 			aa[40]=$("#shub").val();
+		} else {
+			aa[40]=0;
 		}
         var dat={a:JSON.stringify(aa),b:cdata.cid};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
