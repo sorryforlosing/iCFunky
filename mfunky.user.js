@@ -3524,7 +3524,8 @@ function getHighestTrooptype()
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
         layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
         layoutoptbody+="<button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
-        layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'><td>Select Hubs list: </td><td id='shphublist'></td></tbody></table>";
+        //layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'><td>Select Hubs list: </td><td id='shphublist'></td></tbody></table>";
+		layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
@@ -3548,6 +3549,7 @@ function getHighestTrooptype()
 			  });
 			  debugger;
 			  clist.sort(comparestring);
+			  clist.unshift({"id": 0, "name": "off"});
 		  }
           $.each(clist, function(id, value) {
               $("#shub").append(new Option(value["name"], value["id"]));
@@ -4398,24 +4400,16 @@ function getHighestTrooptype()
         aa[41]=0;
 		if (localStorage.getItem('swood') == 1) {
 			aa[37]=$("#shub").val();
-		} else {
-			aa[37]=0;
-		}
+		} 
 		if (localStorage.getItem('sstone') == 1) {
 			aa[38]=$("#shub").val();
-		} else {
-			aa[38]=0;
-		}
+		} 
 		if (localStorage.getItem('siron') == 1) {
 			aa[39]=$("#shub").val();
-		} else {
-			aa[39]=0;
-		}
+		} 
 		if (localStorage.getItem('sfood') == 1) {
 			aa[40]=$("#shub").val();
-		} else {
-			aa[40]=0;
-		}
+		} 
         var dat={a:JSON.stringify(aa),b:cdata.cid};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
