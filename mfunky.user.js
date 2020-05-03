@@ -3541,18 +3541,18 @@ function getHighestTrooptype()
             setshipperh();
         });
         $("#shub").click(function() {
-          //$("#shub option").remove();
           if (clist.length == 0) {
-			  clist = cotg.player.citylist(0);
+			  $.each(cotg.player.citylist(0), function(i, value) {
+				  clist.push({"id": i, "name" : value["name"]}); 
+			  });
+			  debugger;
+			  clist.sort();
 		  }
-          $.each(clist, function(i, value) {
-              var n = value["name"];
-              $("#shub").append(new Option(n, i));
+          $.each(clist, function(id, name) {
+              $("#shub").append(new Option(name, id));
           });
-
         });
         $("#shub").change(function() {
-            debugger;
             localStorage.setItem('shub', $("#shub").val());
         });
         $("#infantryAp").click(function() {
