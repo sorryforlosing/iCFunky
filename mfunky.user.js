@@ -3498,7 +3498,7 @@ function getHighestTrooptype()
     // setting layouts
     $(document).ready(function() {
         $("#citynotes").draggable({ handle: ".popUpBar" , containment: "window", scroll: false});
-        $('#citynotes').height('310px');
+        $('#citynotes').height('410px');
         $('#citynotes').width('495px');
         var layoutopttab="<li id='layoutopt' class='ui-state-default ui-corner-top' role='tab' tabindex='-1' aria-controls='layoutoptBody'";
         layoutopttab+="aria-labeledby='ui-id-60' aria-selected='false' aria-expanded='false'>";
@@ -3512,7 +3512,7 @@ function getHighestTrooptype()
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
         layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
         layoutoptbody+="<button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
-        layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='shub' type='text' style='width:150px;' value='city name'></td></tr>";
+        layoutoptbody+="<table><tbody><tr><td colspan='2'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'>";
         layoutoptbody+="<td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
@@ -3525,9 +3525,18 @@ function getHighestTrooptype()
         $("#nearhubAp").click(function() {
             setnearhub();
         });
-		$("setshipper").click(function() {
+		$("#setshipper").click(function() {
 			localStorage.setItem('shub', $("#shub").val());
             setshipperh();
+        });
+        $("#shub").click(function() {
+          $("#shub option").remove();
+          var clist = cotg.player.citylist(0);
+          $.each(clist, function(i, value) {
+              debugger;
+              var n = value["name"];
+              $("#shub").append(new Option(n, i));
+          });
         });
         $("#infantryAp").click(function() {
             setinfantry();
@@ -4353,6 +4362,9 @@ function getHighestTrooptype()
     }
 	function setshipperh() {
         var aa=city.mo;
+        console.log("Setting Shipper");
+        console.log(aa);
+        aa[41]=0;
 		if (localStorage.getItem('swood') == 1) {
 			aa[37]=$("#shub").val();
 		}
@@ -4360,10 +4372,10 @@ function getHighestTrooptype()
 			aa[38]=$("#shub").val();
 		}
 		if (localStorage.getItem('siron') == 1) {
-			aa[38]=$("#shub").val();
+			aa[39]=$("#shub").val();
 		}
 		if (localStorage.getItem('sfood') == 1) {
-			aa[38]=$("#shub").val();
+			aa[40]=$("#shub").val();
 		}		
         var dat={a:JSON.stringify(aa),b:cdata.cid};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
