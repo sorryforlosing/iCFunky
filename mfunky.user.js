@@ -947,7 +947,7 @@
         var contoff=Number($("#noffx").val());
         var cit=[[]];
         var troopmail=[[]];
-        var counteroff=0;		
+        var counteroff=0;
         for (var i in t) {
             var tid=t[i].id;
 			var castle=cotg.player.citylist(0)[t[i].id].castle;
@@ -3495,6 +3495,17 @@ function getHighestTrooptype()
             Total_Combat_Research[16]+=((Number(cyndros)*0.5)/100)+(Number(Res[research[45]])/100);//warship
         }
     }
+	function comparestring(a, b) {
+		const namea = a["name"].toUpperCase();
+		const nameb = b["name"].toUpperCase();
+		let comparison = 0;
+		if (namea > nameb) {
+			comparison = 1;
+		} else if (namea < nameb) {
+			comparison = -1;
+		}
+		return comparison;
+	}
     // setting layouts
     $(document).ready(function() {
         $("#citynotes").draggable({ handle: ".popUpBar" , containment: "window", scroll: false});
@@ -3518,6 +3529,7 @@ function getHighestTrooptype()
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
         var tabs = $( "#CNtabs" ).tabs();
         var ul = tabs.find( "ul" );
+		var clist = [];
         $( layoutopttab ).appendTo( ul );
         tabs.tabs( "refresh" );
         $("#CNtabs").append(layoutoptbody);
@@ -3526,17 +3538,22 @@ function getHighestTrooptype()
             setnearhub();
         });
 		$("#setshipper").click(function() {
-			localStorage.setItem('shub', $("#shub").val());
             setshipperh();
         });
         $("#shub").click(function() {
-          $("#shub option").remove();
-          var clist = cotg.player.citylist(0);
+          //$("#shub option").remove();
+          if (clist.length == 0) {
+			  clist = cotg.player.citylist(0);
+		  }
           $.each(clist, function(i, value) {
-              debugger;
               var n = value["name"];
               $("#shub").append(new Option(n, i));
           });
+
+        });
+        $("#shub").change(function() {
+            debugger;
+            localStorage.setItem('shub', $("#shub").val());
         });
         $("#infantryAp").click(function() {
             setinfantry();
@@ -3700,7 +3717,7 @@ function getHighestTrooptype()
                 }
 
                 var prefered_data = [
-                    {						
+                    {
 						name: "Cabins",
 						string: "[ShareString.1.3]:########################-:-,-J,#--:--:-#####----,--,#,-:----.###.-.-,-,-P#,---.----##----,-,-S#----.----##-:----#######----;-##::-.-##-----##-.---##:---##-------##---:##---:#---------#----##,-:-#---------#-,-:#######----T----#######-,-:#---------#-.-:##----#---------#.---##-.-.##-------##----##-----##-----##:--,-##,---:-#######:--,--##--;------#:-::-TT--##:---::-.-#-----TTT.###---::---#,,--.-TT#####-----,-#-,----:########################",
 						remarks: "Cabins",
@@ -3714,7 +3731,7 @@ function getHighestTrooptype()
 						remarks: "Storage Hub",
 						notes: "9000 carts 16m w/s 12m i/3f",
 						troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-						res_count:[0,0,0,0,1,2000000,2000000,2000000,2000000,0,0,0,0,1,0,0,0,0,0,4000000,4000000,4000000,4000000]						
+						res_count:[0,0,0,0,1,2000000,2000000,2000000,2000000,0,0,0,0,1,0,0,0,0,0,4000000,4000000,4000000,4000000]
 					},
 					{
                         name: "Praetor 240k @ 7s",
@@ -3773,7 +3790,7 @@ function getHighestTrooptype()
                         res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,575000]
                      },
 					 {
-					    name: "Inn R/T 3s @ 280k",                        
+					    name: "Inn R/T 3s @ 280k",
 						string:"[ShareString.1.3]:########################----PPP#-------#####------J-#--------###-----M-X-#---------##----SS---#---------##------#######------##-----##BBBBB##-----##----##-BGBGB-##----##----#BBBGBGBBB#----##----#BGBBBBBGB#----#######BGBGTGBGB#######----#BGBBBBBGB#----##----#BBBGBGBBB#----##----##-BGBGB-##----##-----##BBBBB##-----##------#######------##--BBBBBBB#---------##--BGBGBGB#---------###-BGBGBGB#--------#####BBBBBBB#-------########################",
                          remarks: "R/T",
                          notes: "175K Rng 125K Tri",
@@ -4207,7 +4224,7 @@ function getHighestTrooptype()
 								resw[j][20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
 								resw[j][21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
 								resw[j][22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
-                                
+
                                 for (var k in resw[j]) {
                                     aa[28+Number(k)]=resw[j][k];
                                 }
@@ -4288,7 +4305,7 @@ function getHighestTrooptype()
 								resd[j][20]=Math.max($("#stonein").val(), cotg.city.resources("stone")["stone_st"] * .75);
 								resd[j][21]=Math.max($("#ironin").val(), cotg.city.resources("iron")["iron_st"] * .75);
 								resd[j][22]=Math.max($("#foodin").val(), cotg.city.resources("food")["food_st"] * .75);
-								
+
                                 for (var k in resd[j]) {
                                     aa[28+Number(k)]=resd[j][k];
                                 }
@@ -4376,7 +4393,7 @@ function getHighestTrooptype()
 		}
 		if (localStorage.getItem('sfood') == 1) {
 			aa[40]=$("#shub").val();
-		}		
+		}
         var dat={a:JSON.stringify(aa),b:cdata.cid};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
