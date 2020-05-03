@@ -3510,7 +3510,10 @@ function getHighestTrooptype()
         layoutoptbody+="<td><input id='addhub' class='clsubopti' type='checkbox'> Set Nearest Hub With layout</td></tr><tr><td>Select Hubs list: </td><td id='selhublist'></td><td>";
         layoutoptbody+="<button id='nearhubAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Set Nearest Hub</button><button id='infantryAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Infantry setup</button></td></tr></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
-        layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr>";
+        layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
+        layoutoptbody+="<button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
+        layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='shub' type='text' style='width:150px;' value='city name'></td></tr>";
+        layoutoptbody+="<td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
         var tabs = $( "#CNtabs" ).tabs();
@@ -3521,6 +3524,10 @@ function getHighestTrooptype()
         $("#buttd").append(layoptbut);
         $("#nearhubAp").click(function() {
             setnearhub();
+        });
+		$("setshipper").click(function() {
+			localStorage.setItem('shub', $("#shub").val());
+            setshipperh();
         });
         $("#infantryAp").click(function() {
             setinfantry();
@@ -3547,6 +3554,9 @@ function getHighestTrooptype()
         if (localStorage.getItem('foodin')) {
             $("#foodin").val(localStorage.getItem('foodin'));
         }
+		if (localStorage.getItem('shub')) {
+			$("shub").val(localStorage.getItem('shub'));
+		}
         if (localStorage.getItem('atroops')) {
             if (localStorage.getItem('atroops')==1) {
                 $("#addtroops").prop( "checked", true );
@@ -3581,6 +3591,26 @@ function getHighestTrooptype()
                 $("#addhub").prop( "checked", true );
             }
         }
+		if (localStorage.getItem('swood')) {
+			if (localStorage.getItem('swood')==1) {
+				$("#shipwood").prop( "checked", true);
+			}
+		}
+		if (localStorage.getItem('sstone')) {
+			if (localStorage.getItem('sstone')==1) {
+				$("#shipstone").prop( "checked", true);
+			}
+		}
+		if (localStorage.getItem('siron')) {
+			if (localStorage.getItem('siron')==1) {
+				$("#shipiron").prop( "checked", true);
+			}
+		}
+		if (localStorage.getItem('sfood')) {
+			if (localStorage.getItem('sfood')==1) {
+				$("#shipfood").prop( "checked", true);
+			}
+		}
         $("#addnotes").change(function() {
             if ($("#addnotes").prop( "checked")==true) {
                 localStorage.setItem('anotes',1);
@@ -3615,6 +3645,26 @@ function getHighestTrooptype()
             if ($("#addhub").prop( "checked")==true) {
                 localStorage.setItem('ahub',1);
             } else {localStorage.setItem('ahub',0);}
+        });
+		$("#shipwood").change(function() {
+            if ($("#shipwood").prop( "checked")==true) {
+                localStorage.setItem('swood',1);
+            } else {localStorage.setItem('swood',0);}
+        });
+		$("#shipstone").change(function() {
+            if ($("#shipstone").prop( "checked")==true) {
+                localStorage.setItem('sstone',1);
+            } else {localStorage.setItem('sstone',0);}
+        });
+		$("#shipiron").change(function() {
+            if ($("#shipiron").prop( "checked")==true) {
+                localStorage.setItem('siron',1);
+            } else {localStorage.setItem('siron',0);}
+        });
+		$("#shipfood").change(function() {
+            if ($("#shipfood").prop( "checked")==true) {
+                localStorage.setItem('sfood',1);
+            } else {localStorage.setItem('sfood',0);}
         });
 
         $("#editspncn").click(function() {
@@ -4298,6 +4348,23 @@ function getHighestTrooptype()
         for (var k in res) {
             aa[28+Number(k)]=res[k];
         }
+        var dat={a:JSON.stringify(aa),b:cdata.cid};
+        jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
+    }
+	function setshipperh() {
+        var aa=city.mo;
+		if (localStorage.getItem('swood') == 1) {
+			aa[37]=$("#shub").val();
+		}
+		if (localStorage.getItem('sstone') == 1) {
+			aa[38]=$("#shub").val();
+		}
+		if (localStorage.getItem('siron') == 1) {
+			aa[38]=$("#shub").val();
+		}
+		if (localStorage.getItem('sfood') == 1) {
+			aa[38]=$("#shub").val();
+		}		
         var dat={a:JSON.stringify(aa),b:cdata.cid};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
