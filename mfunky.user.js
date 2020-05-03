@@ -3523,8 +3523,8 @@ function getHighestTrooptype()
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
         layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
         layoutoptbody+="<button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
-        layoutoptbody+="<table><tbody><tr><td colspan='2'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'>";
-        layoutoptbody+="<td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
+        layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'><td>Select Hubs list: </td><td id='shphublist'></td></tbody></table>";
+        layoutoptbody+="<table><tbody><tr><td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
         var tabs = $( "#CNtabs" ).tabs();
@@ -3546,10 +3546,10 @@ function getHighestTrooptype()
 				  clist.push({"id": i, "name" : value["name"]}); 
 			  });
 			  debugger;
-			  clist.sort();
+			  clist.sort(comparestring);
 		  }
-          $.each(clist, function(id, name) {
-              $("#shub").append(new Option(name, id));
+          $.each(clist, function(id, value) {
+              $("#shub").append(new Option(value["name"], value["id"]));
           });
         });
         $("#shub").change(function() {
@@ -3695,8 +3695,11 @@ function getHighestTrooptype()
 
         $("#editspncn").click(function() {
             $("#selHub").remove();
+			$("#shpHub").remove();
             var selhub=$("#organiser").clone(false).attr({id:"selHub",style:"width:100%;height:28px;font-size:11;border-radius:6px;margin:7px"});
+			var shphub=$("#organiser").clone(false).attr({id:"shpHub",style:"width:100%;height:28px;font-size:11;border-radius:6px;margin:7px"});
             $("#selhublist").append(selhub);
+			$("#shphublist").append(shphub);
             if (localStorage.getItem('hublist')) {
                 $("#selHub").val(localStorage.getItem('hublist')).change();
             }
@@ -4378,9 +4381,19 @@ function getHighestTrooptype()
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
 	function setshipperh() {
-        var aa=city.mo;
-        console.log("Setting Shipper");
-        console.log(aa);
+//      var cityd = {};
+		var aa = city.mo;
+//      var id = 4915444;
+//		debugger;
+//		$.ajax({
+//			type:'POST',
+//			url: 'includes/mnio.php',
+//			data: {aa: id},
+//			dataType: 'json',
+//			success: function(response) {
+//			var cityd = JSON.parse(response);
+//			}
+//          });
         aa[41]=0;
 		if (localStorage.getItem('swood') == 1) {
 			aa[37]=$("#shub").val();
