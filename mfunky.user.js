@@ -3540,7 +3540,10 @@ function getHighestTrooptype()
             setnearhub();
         });
 		$("#setshipper").click(function() {
-            setshipperh("4915444");
+			var hubid = $("#shphublist").val()
+			$.each(cotg.player.citylist(hubid), function(i, value) {
+				  setshipper(i); 
+			  });
         });
         $("#shub").click(function() {
           if (clist.length == 0) {
