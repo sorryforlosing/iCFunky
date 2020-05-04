@@ -3542,7 +3542,7 @@ function getHighestTrooptype()
 		$("#setshipper").click(function() {
 			var hubid = $("#shphublist").val()
 			$.each(cotg.player.citylist(hubid), function(i, value) {
-				  setshipper(i); 
+				  setshipperh(i); 
 			  });
 			 alert("Shippers are set");
         });
