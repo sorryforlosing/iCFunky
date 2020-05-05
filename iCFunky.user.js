@@ -3,7 +3,7 @@
 // @namespace https://github.com/sorryforlosing/iCFunky
 // @version 1.0.13
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
-// @author Cfunky, Dhruv, Mohnky, Innuendo
+// @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match https://w18.crownofthegods.com
 // @match https://w19.crownofthegods.com
 // @match https://w20.crownofthegods.com
