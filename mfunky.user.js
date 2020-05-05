@@ -4411,7 +4411,7 @@ function getHighestTrooptype()
 		{
 			var res=[0,0,0,0,1,130000,130000,0,0,0,0,0,0,1,0,0,0,0,0,300000,300000,300000,400000];
 			var hubs={cid:[],distance:[]};
-			$.each(clc, function(key, value) {
+			$.each(clc2, function(key, value) {
 				if (key==$("#selHub").val()) {
 					hubs.cid=value;
 				}
