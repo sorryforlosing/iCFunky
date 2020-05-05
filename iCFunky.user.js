@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name Cotg iCFunky
-// @namespace https://github.com/Mohnki/Mfunky
+// @namespace https://github.com/sorryforlosing/iCFunky
 // @version 1.0.13
-// @description Cotg CFunky, MFunky
+// @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnky, Innuendo
 // @match https://w18.crownofthegods.com
 // @match https://w19.crownofthegods.com
 // @match https://w20.crownofthegods.com
 // @include https://w/*.crownofthegods.com/World*
 // @grant none
-// @updateURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
-// @downloadURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
+// @updateURL https://github.com/sorryforlosing/iCFunky/raw/master/iCFunky.user.js
+// @downloadURL https://github.com/sorryforlosing/iCFunky/raw/master/iCFunky.user.js
 // ==/UserScript==
 //Special Thanks to Sorry4LosinG for helping with php queries
 (function() {
