@@ -4423,7 +4423,7 @@ function getHighestTrooptype()
 			}
 			var mindist = Math.min.apply(Math, hubs.distance);
 			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];
-            aa[41]=0;
+            aa[41]=1;
 			aa[43]=nearesthub;			
 		}
 		else
