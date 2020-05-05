@@ -3561,9 +3561,11 @@ function getHighestTrooptype()
 			  clist.unshift({"id": 0, "name": "off"});
 			  clist.unshift({"id": 999, "name": "auto"});
 		  }
-          $.each(clist, function(id, value) {
-              $("#shub").append(new Option(value["name"], value["id"]));
-          });
+		  if ($('#shub > option').length < 1) {			  
+			$.each(clist, function(id, value) {
+				$("#shub").append(new Option(value["name"], value["id"]));
+			});
+		  }
         });
         $("#shub").change(function() {
             localStorage.setItem('shub', $("#shub").val());
