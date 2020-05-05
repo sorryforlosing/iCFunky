@@ -12,7 +12,7 @@
 // @updateURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
 // @downloadURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
 // ==/UserScript==
-//Special Thanks to Sorry5LosinG for helping with php queries
+//Special Thanks to Sorry4LosinG for helping with php queries
 (function() {
 // popup message for players when they open the game.
 //   $(document).ready(function() {
