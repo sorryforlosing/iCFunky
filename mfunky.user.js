@@ -4407,7 +4407,7 @@ function getHighestTrooptype()
 			}
          });
         var aa = cityd.city.mo;
-		if ($("#shub").val() == "auto")
+		if ($("#shub").val() == 999)
 		{
 			var res=[0,0,0,0,1,130000,130000,0,0,0,0,0,0,1,0,0,0,0,0,300000,300000,300000,400000];
 			var hubs={cid:[],distance:[]};
