@@ -114,8 +114,8 @@
                     for (var j=1;j<ll;j++) {
                         clc[temp].push($(tempcl[j]).attr("value"));
                     }
+					clc2 = clc;
                 }
-                clc2 = clc;
             }
             $("#organiser").val("all").change();
         },4000);
