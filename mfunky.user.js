@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name Cotg Mfunky
+// @name Cotg iCFunky
 // @namespace https://github.com/Mohnki/Mfunky
 // @version 1.0.13
-// @description Cotg Mfunky
-// @author Mohnki
+// @description Cotg CFunky, MFunky
+// @author Cfunky, Dhruv, Mohnky, Innuendo
 // @match https://w18.crownofthegods.com
 // @match https://w19.crownofthegods.com
 // @match https://w20.crownofthegods.com
@@ -12,7 +12,7 @@
 // @updateURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
 // @downloadURL https://github.com/srichardson001/CustomMfunky/raw/master/mfunky.user.js
 // ==/UserScript==
-
+//Special Thanks to Sorry5LosinG for helping with php queries
 (function() {
 // popup message for players when they open the game.
 //   $(document).ready(function() {
@@ -3526,8 +3526,7 @@ function getHighestTrooptype()
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
         layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
         layoutoptbody+="<td>**BETA**Use at own risk!!!</td><td colspan='2'><button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
-        layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'><td>Select Hubs list: </td><td id='shphublist'></td></tbody></table>";
-		//layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'></tbody></table>";
+        layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'><td>Select Shippers list: </td><td id='shphublist'></td></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
