@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg Mfunky
 // @namespace https://github.com/Mohnki/Mfunky
-// @version 1.0.12
+// @version 1.0.13
 // @description Cotg Mfunky
 // @author Mohnki
 // @match https://w18.crownofthegods.com
@@ -70,6 +70,7 @@
     var pdata; //player data
     var poll2; //poll2data
     var clc={};// city lists info
+    var clc2 ={};
     var oga; //city outgoing attacks info
     var city={cid:0,x:0,y:0,th:[0],cont:0}; //current city data
     var bosses={name:["Cyclops","Andar's Colosseum Challenge","Dragon","Romulus and Remus","Gorgon","GM Gordy","Triton"],
@@ -106,7 +107,7 @@
                 clc[temp]=[];
                 var tempcl=$("#cityDropdownMenu > option");
                 var ll=tempcl.length;
-                if (cdata.cg.indexOf(temp)>-1) {
+                if (cdata !== undefined && cdata.cg !== undefined && cdata.cg.indexOf(temp)>-1) {
                     clc[temp].push($(tempcl[0]).attr("value"));
                 }
                 if (ll>1) {
@@ -114,6 +115,7 @@
                         clc[temp].push($(tempcl[j]).attr("value"));
                     }
                 }
+                clc2 = clc;
             }
             $("#organiser").val("all").change();
         },4000);
@@ -3540,11 +3542,15 @@ function getHighestTrooptype()
             setnearhub();
         });
 		$("#setshipper").click(function() {
-			var hubid = $("#shphublist").val()
-			$.each(cotg.player.citylist(hubid), function(i, value) {
-				  setshipperh(i); 
+			if ($("#shpHub option:selected").text() !== "All")
+			{
+			var hubid = $("#shpHub").val();
+			$.each(clc2[hubid], function(i, value) {
+				setshipperh(value);
 			  });
 			 alert("Shippers are set");
+			}
+			else {alert("All not supported");}
         });
         $("#shub").click(function() {
           if (clist.length == 0) {
@@ -4413,7 +4419,7 @@ function getHighestTrooptype()
 		if (localStorage.getItem('sfood') == 1) {
 			aa[40]=$("#shub").val();
 		} 
-        var dat={a:JSON.stringify(aa),b:cdata.cid};
+        var dat={a:JSON.stringify(aa),b:id};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
     //infantry setup
