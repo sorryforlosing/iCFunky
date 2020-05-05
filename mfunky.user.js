@@ -3559,6 +3559,7 @@ function getHighestTrooptype()
 			  });
 			  clist.sort(comparestring);
 			  clist.unshift({"id": 0, "name": "off"});
+			  clist.unshift({"id": 999, "name": "auto"});
 		  }
           $.each(clist, function(id, value) {
               $("#shub").append(new Option(value["name"], value["id"]));
@@ -4393,7 +4394,7 @@ function getHighestTrooptype()
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
 	function setshipperh(id) {
-      var cityd = {};
+    var cityd = {};
     var dat = {'world': '', 'cid': id, 'ai':'0', 'ss':s};
    	$.ajax({
 			type:'POST',
@@ -4406,19 +4407,43 @@ function getHighestTrooptype()
 			}
          });
         var aa = cityd.city.mo;
-        aa[41]=0;
-		if (localStorage.getItem('swood') == 1) {
-			aa[37]=$("#shub").val();
-		} 
-		if (localStorage.getItem('sstone') == 1) {
-			aa[38]=$("#shub").val();
-		} 
-		if (localStorage.getItem('siron') == 1) {
-			aa[39]=$("#shub").val();
-		} 
-		if (localStorage.getItem('sfood') == 1) {
-			aa[40]=$("#shub").val();
-		} 
+		if ($("#shub").val() == "auto")
+		{
+			var res=[0,0,0,0,1,130000,130000,0,0,0,0,0,0,1,0,0,0,0,0,300000,300000,300000,400000];
+			var hubs={cid:[],distance:[]};
+			$.each(clc, function(key, value) {
+				if (key==$("#selHub").val()) {
+					hubs.cid=value;
+				}
+			});
+			for (var i in hubs.cid) {
+				var tempx=Number(hubs.cid[i] % 65536);
+				var tempy=Number((hubs.cid[i]-tempx)/65536);
+				hubs.distance.push(Math.sqrt((tempx-cityd.x)*(tempx-cityd.x)+(tempy-cityd.y)*(tempy-cityd.y)));
+			}
+			var mindist = Math.min.apply(Math, hubs.distance);
+			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];
+            res[15]=nearesthub;
+			for (var k in res) {
+				aa[28+Number(k)]=res[k];
+			}
+		}
+		else
+		{
+			aa[41]=0;
+			if (localStorage.getItem('swood') == 1) {
+				aa[37]=$("#shub").val();
+			} 
+			if (localStorage.getItem('sstone') == 1) {
+				aa[38]=$("#shub").val();
+			} 
+			if (localStorage.getItem('siron') == 1) {
+				aa[39]=$("#shub").val();
+			} 
+			if (localStorage.getItem('sfood') == 1) {
+				aa[40]=$("#shub").val();
+			}
+		}		
         var dat={a:JSON.stringify(aa),b:id};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
