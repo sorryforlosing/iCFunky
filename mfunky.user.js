@@ -4419,7 +4419,7 @@ function getHighestTrooptype()
 			for (var i in hubs.cid) {
 				var tempx=Number(hubs.cid[i] % 65536);
 				var tempy=Number((hubs.cid[i]-tempx)/65536);
-				hubs.distance.push(Math.sqrt((tempx-cityd.x)*(tempx-cityd.x)+(tempy-cityd.y)*(tempy-cityd.y)));
+				hubs.distance.push(Math.sqrt((tempx-cityd.city.x)*(tempx-cityd.city.x)+(tempy-cityd.city.y)*(tempy-cityd.city.y)));
 			}
 			var mindist = Math.min.apply(Math, hubs.distance);
 			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];
