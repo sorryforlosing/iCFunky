@@ -4442,8 +4442,8 @@ function getHighestTrooptype()
 				aa[40]=$("#shub").val();
 			}
 		}		
-        var dat={a:JSON.stringify(aa),b:id};
-        jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
+        var dat2={a:JSON.stringify(aa),b:id};
+        jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat2});
     }
     //infantry setup
     function setinfantry() {
