@@ -4396,6 +4396,7 @@ function getHighestTrooptype()
 	function setshipperh(id) {
     var cityd = {};
     var dat = {'world': '', 'cid': id, 'ai':'0', 'ss':s};
+	var nearesthub = $("#shub").val();
    	$.ajax({
 			type:'POST',
 			url: 'includes/poll2.php',
@@ -4409,7 +4410,6 @@ function getHighestTrooptype()
         var aa = cityd.city.mo;
 		if ($("#shub").val() == 999)
 		{
-			var res=[0,0,0,0,1,130000,130000,0,0,0,0,0,0,1,0,0,0,0,0,300000,300000,300000,400000];
 			var hubs={cid:[],distance:[]};
 			$.each(clc2, function(key, value) {
 				if (key==$("#selHub").val()) {
@@ -4422,26 +4422,21 @@ function getHighestTrooptype()
 				hubs.distance.push(Math.sqrt((tempx-cityd.city.x)*(tempx-cityd.city.x)+(tempy-cityd.city.y)*(tempy-cityd.city.y)));
 			}
 			var mindist = Math.min.apply(Math, hubs.distance);
-			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];
-            aa[41]=1;
-			aa[43]=nearesthub;			
+			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];		
 		}
-		else
-		{
-			aa[41]=0;
-			if (localStorage.getItem('swood') == 1) {
-				aa[37]=$("#shub").val();
-			} 
-			if (localStorage.getItem('sstone') == 1) {
-				aa[38]=$("#shub").val();
-			} 
-			if (localStorage.getItem('siron') == 1) {
-				aa[39]=$("#shub").val();
-			} 
-			if (localStorage.getItem('sfood') == 1) {
-				aa[40]=$("#shub").val();
-			}
-		}		
+        aa[41]=0;
+		if (localStorage.getItem('swood') == 1) {
+			aa[37]=nearesthub;
+		} 
+		if (localStorage.getItem('sstone') == 1) {
+			aa[38]=nearesthub;
+		} 
+		if (localStorage.getItem('siron') == 1) {
+			aa[39]=nearesthub;
+		} 
+		if (localStorage.getItem('sfood') == 1) {
+			aa[40]=nearesthub;
+		}			
         var dat2={a:JSON.stringify(aa),b:id};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat2});
     }
