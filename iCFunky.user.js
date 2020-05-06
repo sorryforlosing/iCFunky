@@ -14,27 +14,13 @@
 // ==/UserScript==
 //Special Thanks to Sorry4LosinG for helping with php queries
 (function() {
-// popup message for players when they open the game.
-//   $(document).ready(function() {
-//       var popwin="<div id='HelloWorld' style='width:400px;height:400px;background-color: #E2CBAC;-moz-border-radius: //10px;-webkit-border-radius: 10px;border-radius: 10px;border: 4px ridge #DAA520;position:absolute;right:40%;top:100px; //z-index:1000000;'><div class=\"popUpBar\"> <span class=\"ppspan\">Welcome!</span><button id=\"cfunkyX\" //onclick=\"$('#HelloWorld').remove();\" class=\"xbutton greenb\"><div id=\"xbuttondiv\"><div><div //id=\"centxbuttondiv\"></div></div></div></button></div><div id='hellobody' class=\"popUpWindow\"><span //style='margin-left: 5%;'> <h3 style='text-align:center;'>Welcome to Crown Of The Gods!</h3></span><br><br><span //style='margin-left: 5%;'> <h4 style='text-align:center;'> MFunky(Cfunky + Dfunky + Mohnki's Additional //Layouts)</h4></span><br><span style='margin-left: 5%;'> <h4 style='text-align:center;'>Updated 28th April //2019</h4></span><br><br><span style='margin-left: 5%;'><h4>changes:</h4> <ul style='margin-left: 6%;'><li>Added //Additional Layouts</li></ul></span></div></div>";
-//       $("body").append(popwin);
-//
-//        setTimeout(function() {
-//            var options = {};
-//            $('#HelloWorld').hide( 'drop', options, 2000);
-//        }, 5000);
-//
-//
-//    });
     var ttts=[1,10,1,1,1,1,1,2,2,2,2,2,10,10,100,100,400,1]; //ts per unit
     var citytc;
     var message="Not enough TS to kill this boss!";
     var other_loot=[350,1000,4270,15500,32300,56900,117200,198500,297500,441600]; //forest, hill loot
     var mountain_loot=[350,960,4100,14900,31000,54500,112500,190500,285500,423500];//mountain loot
-    var tpicdiv=["guard32 trooptdcm","bally32 trooptdcm","ranger32 trooptdcm","triari32 trooptdcm","priest32 trooptdcm","vanq32 trooptdcm","sorc32 trooptdcm","scout32 trooptdcm","arbal32 trooptdcm","praet32 trooptdcm","horsem32 trooptdcm",
-        "druid32 trooptdcm","ram32 trooptdcm","scorp32 trooptdcm","galley32 trooptdcm","sting32 trooptdcm","wship32 trooptdcm","senat32 trooptdcm"];
-    var tpicdiv20=["guard20 trooptdcm","bally20 trooptdcm","ranger20 trooptdcm","triari20 trooptdcm","priest20 trooptdcm","vanq20 trooptdcm","sorc20 trooptdcm","scout20 trooptdcm","arbal20 trooptdcm","praet20 trooptdcm","horsem20 trooptdcm",
-        "druid20 trooptdcm","ram20 trooptdcm","scorp20 trooptdcm","galley20 trooptdcm","sting20 trooptdcm","wship20 trooptdcm","senat20 trooptdcm"];
+    var tpicdiv=["guard32 trooptdcm","bally32 trooptdcm","ranger32 trooptdcm","triari32 trooptdcm","priest32 trooptdcm","vanq32 trooptdcm","sorc32 trooptdcm","scout32 trooptdcm","arbal32 trooptdcm","praet32 trooptdcm","horsem32 trooptdcm","druid32 trooptdcm","ram32 trooptdcm","scorp32 trooptdcm","galley32 trooptdcm","sting32 trooptdcm","wship32 trooptdcm","senat32 trooptdcm"];
+    var tpicdiv20=["guard20 trooptdcm","bally20 trooptdcm","ranger20 trooptdcm","triari20 trooptdcm","priest20 trooptdcm","vanq20 trooptdcm","sorc20 trooptdcm","scout20 trooptdcm","arbal20 trooptdcm","praet20 trooptdcm","horsem20 trooptdcm","druid20 trooptdcm","ram20 trooptdcm","scorp20 trooptdcm","galley20 trooptdcm","sting20 trooptdcm","wship20 trooptdcm","senat20 trooptdcm"];
     var ttspeed=[0,30,20,20,20,20,20,8,10,10,10,10,30,30,5,5,5,40];
     var ttres=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
     var ibriafaith=0,ylannafaith=0,naerafaith=0,cyndrosfaith=0,domdisfaith=0,vexifaith=0,meriusfaith=0,evarafaith=0; //alliance faiths
@@ -42,12 +28,9 @@
     var TS_type=[0,0,1,1,1,1,1,0,2,2,2,2,0,0,0,100,400];
     var Total_Combat_Research=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
     var naera=0,vexemis=0,cyndros=0,ylanna=0;
-    var buildings={name: ["forester","cottage","storehouse","quarry","hideaway","farmhouse","cityguardhouse","barracks","mine","trainingground","marketplace","townhouse","sawmill","stable","stonemason","mage_tower","windmill","temple","smelter","blacksmith",
-            "castle","port","port","port","shipyard","shipyard","shipyard","townhall","castle"],
-        bid: [448,446,464,461,479,447,504,445,465,483,449,481,460,466,462,500,463,482,477,502,"467",488,489,490,491,496,498,455,467]};
+    var buildings={name: ["forester","cottage","storehouse","quarry","hideaway","farmhouse","cityguardhouse","barracks","mine","trainingground","marketplace","townhouse","sawmill","stable","stonemason","mage_tower","windmill","temple","smelter","blacksmith","castle","port","port","port","shipyard","shipyard","shipyard","townhall","castle"], bid: [448,446,464,461,479,447,504,445,465,483,449,481,460,466,462,500,463,482,477,502,"467",488,489,490,491,496,498,455,467]};
     var sum=true;
     var bdcountshow=true;
-//    var loot=[0,400,1000,4500,15000,33000,60000,120000,201000,300000,446000]; //cavern loot per lvl
     var bossdef=[625,3750,25000,50000,125000,187500,250000,375000,562500,750000]; //bosses defense value
     var bossdefw=[425,2500,17000,33000,83000,125000,170000,250000,375000,500000]; // bosses defense value for weakness type
     var bossmts=[6,20,100,500,2000,3500,5000,8000,12000,15000]; //minimum TS to send to a boss
@@ -73,8 +56,7 @@
     var clc2 ={};
     var oga; //city outgoing attacks info
     var city={cid:0,x:0,y:0,th:[0],cont:0}; //current city data
-    var bosses={name:["Cyclops","Andar's Colosseum Challenge","Dragon","Romulus and Remus","Gorgon","GM Gordy","Triton"],
-        pic:["cyclops32 mauto bostooltip tooltipstered","andar32 mauto bostooltip tooltipstered","dragon32 mauto bostooltip tooltipstered","romrem32 mauto bostooltip tooltipstered","gorgon32 mauto bostooltip tooltipstered","gmgordy32 mauto bostooltip tooltipstered","triton32 mauto bostooltip tooltipstered"]};
+    var bosses={name:["Cyclops","Andar's Colosseum Challenge","Dragon","Romulus and Remus","Gorgon","GM Gordy","Triton"], pic:["cyclops32 mauto bostooltip tooltipstered","andar32 mauto bostooltip tooltipstered","dragon32 mauto bostooltip tooltipstered","romrem32 mauto bostooltip tooltipstered","gorgon32 mauto bostooltip tooltipstered","gmgordy32 mauto bostooltip tooltipstered","triton32 mauto bostooltip tooltipstered"]};
     var bossinfo={x:[],y:[],lvl:[],data:[],name:[],cont:[],distance:[]};
     var key="_`abcdefgh";
     var remarksl=[""];
@@ -258,23 +240,6 @@
     function roundToTwo(num) {
         return +(Math.round(num + "e+2")  + "e-2");
     }
-    /*    function errormsgBR(a, b) {
-            $(a).show();
-            $(b).animate({ opacity: 1, bottom: "+10px" }, 'slow');
-            errormsgBRhide(a, b);
-        }
-        function errormsgBRhide(a, b) {
-            setTimeout(function(){
-                $(b).animate({ opacity: 0, bottom: "-10px" }, 'slow');
-                $(a).fadeOut("slow");
-            }, 5000);
-            setTimeout(function(){
-                $(a).remove();
-            }, 6000);
-        }
-        var errmBR=0;
-        var message="Error, you need at least ";*/
-
     var errz=0;
     function errorgo(j) {
         var errormsgs;
@@ -294,17 +259,6 @@
             $(c).remove();
         }, 6000);
     }
-    /*   function errorgo(j) {
-           var errormsgs;
-           errmBR = errmBR+1;
-           var b = 'errBR' +errmBR;
-           var c = '#' +b;
-           var d = '#' +b+ ' div';
-           errormsgs = '<tr ID = "' +b+ '"><td><div class = "errBR">' +j+ '<div></td></tr>';
-           $("#errorBRpopup").append(errormsgs);
-           errormsgBR(c, d);
-       }
-       */
     String.prototype.replaceAt=function(index, char) {
         var a = this.split("");
         a[index] = char;
@@ -827,7 +781,6 @@
         $("#attackSec").val(Aexp.time[2]);
         $("#attackDat").val(Aexp.time[3]);
     }
-
     function neardeftable(t) {
         var cx=$("#ndefx").val();
         var cy=$("#ndefy").val();
@@ -945,7 +898,6 @@
         //      $("#ndefdist").trigger({type:"click",originalEvent:"1"});
         //      $("#ndefdist").trigger({type:"click",originalEvent:"1"});
     }
-
     function nearofftable(t) {
         var contoff=Number($("#noffx").val());
         var cit=[[]];
@@ -1050,7 +1002,6 @@
             });
         });
     }
-
     function clickevent(element) {
         var event = jQuery.Event("click");
         event.user = "foo";
@@ -2165,7 +2116,7 @@
         $("#bdcountwin").html(bdtable);
         $("#numbdleft").html(bdNumber);
     }
-//troop predictor part
+    //troop predictor part
     $(document).ready(function() {
         //adding 2 elements into the html
         var incomingtabledata = $("#incomingsAttacksTable").children().children().children();
@@ -3121,7 +3072,7 @@
         var percentage_loot_takable=Math.ceil((troop_loot/total_loot)*100);
         $("#dungloctab").find(".addraiwc td:nth-child(3)").text("carry:"+percentage_loot_takable+"%");
     }
-function getHighestTrooptype()
+    function getHighestTrooptype()
     {
         let max = 0;
         var maxtype = "";
@@ -3498,7 +3449,7 @@ function getHighestTrooptype()
             Total_Combat_Research[16]+=((Number(cyndros)*0.5)/100)+(Number(Res[research[45]])/100);//warship
         }
     }
-	function comparestring(a, b) {
+	  function comparestring(a, b) {
 		const namea = a["name"].toUpperCase();
 		const nameb = b["name"].toUpperCase();
 		let comparison = 0;
@@ -3525,8 +3476,8 @@ function getHighestTrooptype()
         layoutoptbody+="<button id='nearhubAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Set Nearest Hub</button><button id='infantryAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Infantry setup</button></td></tr></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td><td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
         layoutoptbody+="<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td><td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr></tbody></table>";
-        layoutoptbody+="<td>**BETA**Use at own risk!!!</td><td colspan='2'><button id='setshipper' class='regButton greenb' style='width:130px; margin-left: 0%'>Set Shipper</button>";
-        layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:95%;height:30px;'><td>Select Shippers list: </td><td id='shphublist'></td></tbody></table>";
+        layoutoptbody+="<td style=text-align:left>**BETA**Use at own risk!!!</td><td colspan='2'><button id='setshipper' class='regButton greenb' style='width:100px; margin-left: 0%'>Set Shipper</button>";
+        layoutoptbody+="<table><tbody><tr><td>Target City</td><td colspan='1'><select id='shub' class='regButton greenb' style='font-size: 10px !important;width:100px;height:30px;'><td>Select Shippers list: </td><td id='shphublist'></td></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td><input id='shipwood' class='clsubopti' type='checkbox'> wood</td><td><input id='shipstone' class='clsubopti' type='checkbox'> stone</td><td><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         layoutoptbody+="</tbody></table></div>";
         var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button>";
@@ -3554,13 +3505,13 @@ function getHighestTrooptype()
         $("#shub").click(function() {
           if (clist.length == 0) {
 			  $.each(cotg.player.citylist(0), function(i, value) {
-				  clist.push({"id": i, "name" : value["name"]}); 
+				  clist.push({"id": i, "name" : value["name"]});
 			  });
 			  clist.sort(comparestring);
 			  clist.unshift({"id": 0, "name": "off"});
 			  clist.unshift({"id": 999, "name": "auto"});
 		  }
-		  if ($('#shub > option').length < 1) {			  
+		  if ($('#shub > option').length < 1) {
 			$.each(clist, function(id, value) {
 				$("#shub").append(new Option(value["name"], value["id"]));
 			});
@@ -3705,52 +3656,50 @@ function getHighestTrooptype()
             if ($("#shipfood").prop( "checked")==true) {
                 localStorage.setItem('sfood',1);
             } else {localStorage.setItem('sfood',0);}
+    });
+    $("#editspncn").click(function() {
+        $("#selHub").remove();
+		    $("#shpHub").remove();
+        var selhub=$("#organiser").clone(false).attr({id:"selHub",style:"width:100%;height:28px;font-size:11;border-radius:6px;margin:7px"});
+		    var shphub=$("#organiser").clone(false).attr({id:"shpHub",style:"width:100%;height:28px;font-size:11;border-radius:6px;margin:7px"});
+        $("#selhublist").append(selhub);
+		    $("#shphublist").append(shphub);
+        if (localStorage.getItem('hublist')) {
+          $("#selHub").val(localStorage.getItem('hublist')).change();
+        }
+        $("#selHub").change(function() {
+          localStorage.setItem('hublist',$("#selHub").val());
         });
-
-        $("#editspncn").click(function() {
-            $("#selHub").remove();
-			$("#shpHub").remove();
-            var selhub=$("#organiser").clone(false).attr({id:"selHub",style:"width:100%;height:28px;font-size:11;border-radius:6px;margin:7px"});
-			var shphub=$("#organiser").clone(false).attr({id:"shpHub",style:"width:100%;height:28px;font-size:11;border-radius:6px;margin:7px"});
-            $("#selhublist").append(selhub);
-			$("#shphublist").append(shphub);
-            if (localStorage.getItem('hublist')) {
-                $("#selHub").val(localStorage.getItem('hublist')).change();
+        $('#dfunkylayout').remove();
+        $('#funkylayoutl').remove();
+        $('#funkylayoutw').remove();
+        setTimeout(function(){
+          var currentlayout=$('#currentLOtextarea').text();
+          for (var i=20; i<currentlayout.length-20;i++) {
+            var tmpchar=currentlayout.charAt(i);
+            var cmp=new RegExp(tmpchar);
+            if (!(cmp.test(emptyspots))) {
+              currentlayout=currentlayout.replaceAt(i,"-");
             }
-            $("#selHub").change(function() {
-                localStorage.setItem('hublist',$("#selHub").val());
-            });
-            $('#dfunkylayout').remove();
-            $('#funkylayoutl').remove();
-            $('#funkylayoutw').remove();
-            setTimeout(function(){
-                var currentlayout=$('#currentLOtextarea').text();
-                for (var i=20; i<currentlayout.length-20;i++) {
-                    var tmpchar=currentlayout.charAt(i);
-                    var cmp=new RegExp(tmpchar);
-                    if (!(cmp.test(emptyspots))) {
-                        currentlayout=currentlayout.replaceAt(i,"-");
-                    }
-                }
-
+          }
                 var prefered_data = [
                     {
-						name: "Cabins",
-						string: "[ShareString.1.3]:########################-:-,-J,#--:--:-#####----,--,#,-:----.###.-.-,-,-P#,---.----##----,-,-S#----.----##-:----#######----;-##::-.-##-----##-.---##:---##-------##---:##---:#---------#----##,-:-#---------#-,-:#######----T----#######-,-:#---------#-.-:##----#---------#.---##-.-.##-------##----##-----##-----##:--,-##,---:-#######:--,--##--;------#:-::-TT--##:---::-.-#-----TTT.###---::---#,,--.-TT#####-----,-#-,----:########################",
-						remarks: "Cabins",
-						notes: "Building",
-						troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-						res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,200000]
+						            name: "Cabins",
+						            string: "[ShareString.1.3]:########################-:-,-J,#--:--:-#####----,--,#,-:----.###.-.-,-,-P#,---.----##----,-,-S#----.----##-:----#######----;-##::-.-##-----##-.---##:---##-------##---:##---:#---------#----##,-:-#---------#-,-:#######----T----#######-,-:#---------#-.-:##----#---------#.---##-.-.##-------##----##-----##-----##:--,-##,---:-#######:--,--##--;------#:-::-TT--##:---::-.-#-----TTT.###---::---#,,--.-TT#####-----,-#-,----:########################",
+						            remarks: "Cabins",
+						            notes: "Building",
+						            troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						            res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,200000]
                     },
-					{
-						name: "Storage",
-						string:						"[ShareString.1.3];########################-------#PPPPPPP#####--------#PPPPPPPP###---------#PPPPPPPPP##---------#PPPPPPPPP##------#######-PPPPP##-----##-----##-PPPP##----##-------##PPP-##----#SSSSSSSSS#----##----#DLAMLDLAM#----#######SSSSTSSSS#######--ZJ#DLAMADLAM#----##--B-#SSSSSSSSS#----##----##-------##----##-----##-----##-----##------#######--RR--##---------#----RTTR-##---------#----RTTTR###--------#-----RTT#####-------#------R########################",
-						remarks: "Storage Hub",
-						notes: "9000 carts 16m w/s 12m i/3f",
-						troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-						res_count:[0,0,0,0,1,2000000,2000000,2000000,2000000,0,0,0,0,1,0,0,0,0,0,4000000,4000000,4000000,4000000]
-					},
-					{
+					          {
+						            name: "Storage",
+						            string:	"[ShareString.1.3];########################-------#PPPPPPP#####--------#PPPPPPPP###---------#PPPPPPPPP##---------#PPPPPPPPP##------#######-PPPPP##-----##-----##-PPPP##----##-------##PPP-##----#SSSSSSSSS#----##----#DLAMLDLAM#----#######SSSSTSSSS#######--ZJ#DLAMADLAM#----##--B-#SSSSSSSSS#----##----##-------##----##-----##-----##-----##------#######--RR--##---------#----RTTR-##---------#----RTTTR###--------#-----RTT#####-------#------R########################",
+						            remarks: "Storage Hub",
+						            notes: "9000 carts 16m w/s 12m i/3f",
+						            troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						            res_count:[0,0,0,0,1,2000000,2000000,2000000,2000000,0,0,0,0,1,0,0,0,0,0,4000000,4000000,4000000,4000000]
+					          },
+                    {
                         name: "Praetor 240k @ 7s",
                         string: "[ShareString.1.3]:########################-----JX#-------#####BBBBBPPP#--------###-BZZZB-MS#---------##-BBBBB--S#---------##-BZZZB#######------##-BBBB##BZBZB##-----##----##BBZBZBB##----##----#BZBZBZBZB#----##----#BZBZBZBZB#----#######BZBBTBBZB#######----#BZBZBZBZB#----##----#BZBZBZBZB#----##----##BBZBZBB##----##-----##BZBZB##-----##------#######------##---------#---------##---------#---------###--------#--------#####-------#-------########################",
                         remarks: "Fast Praetors",
@@ -3758,7 +3707,7 @@ function getHighestTrooptype()
                         troop_count: [0,0,0,0,0,0,0,0,0,240000,0,0,0,0,0,0,0],
                         res_count: [0,0,0,0,1,575000,575000,575000,575000,0,0,0,0,1,0,0,0,0,0,575000,575000,575000,575000]
                     },
-					{
+					          {
                         name: "Praetor 264k @ 8s",
                         string: "[ShareString.1.3]:########################BBBB-XJ#-------#####BZZZB-PP#--------###BBBBBB-SS#---------##BZZZZB--M#---------##BBBBBB#######------##-----##BBBBB##-----##----##-ZZZZZB##----##----#BBBBBBBBB#----##----#BZZBZBZZB#----#######BBBBTBBBB#######----#BZZBZBZZB#----##----#BBBBBBBBB#----##----##-ZZZZZB##----##-----##BBBBB##-----##------#######------##---------#---------##---------#---------###--------#--------#####-------#-------########################",
                         remarks: "Raid Praetors",
@@ -3798,19 +3747,19 @@ function getHighestTrooptype()
                         troop_count: [0,0,0,0,0,0,228000,0,0,0,0,0,0,0,0,0,0],
                         res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,575000]
                      },
-					 {
+					          {
                         name: "Inn V/T 2/3s @ 256k",
                         string:"[ShareString.1.3]:########################----PPP#-------#####------J-#--------###-------X-#---------##----SS---#---------##------#######------##-----##BBBBB##-----##----##-BGBGB-##----##----#BGBGBGBGB#----##----#BGBGBGBGB#----#######BGBBTBBGB#######----#BGBGBGBGB#----##----#BGBGBGBGB#----##----##-BGBGB-##----##-----##BBBBB##-----##------#######------##--BBBBBBB#---------##--BGBGBGB#---------###-BGBGBGB#--------#####BBBBBBB#-------########################",
-                         remarks: "V/T Raid",
-                         notes: "149K Vanq 108K Tri",
+                        remarks: "V/T Raid",
+                        notes: "149K Vanq 108K Tri",
                         troop_count: [0,0,0,105000,0,148000,0,0,0,0,0,0,0,0,0,0,0],
                         res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,575000]
                      },
-					 {
-					    name: "Inn R/T 3s @ 280k",
-						string:"[ShareString.1.3]:########################----PPP#-------#####------J-#--------###-----M-X-#---------##----SS---#---------##------#######------##-----##BBBBB##-----##----##-BGBGB-##----##----#BBBGBGBBB#----##----#BGBBBBBGB#----#######BGBGTGBGB#######----#BGBBBBBGB#----##----#BBBGBGBBB#----##----##-BGBGB-##----##-----##BBBBB##-----##------#######------##--BBBBBBB#---------##--BGBGBGB#---------###-BGBGBGB#--------#####BBBBBBB#-------########################",
-                         remarks: "R/T",
-                         notes: "175K Rng 125K Tri",
+					          {
+					              name: "Inn R/T 3s @ 280k",
+						            string:"[ShareString.1.3]:########################----PPP#-------#####------J-#--------###-----M-X-#---------##----SS---#---------##------#######------##-----##BBBBB##-----##----##-BGBGB-##----##----#BBBGBGBBB#----##----#BGBBBBBGB#----#######BGBGTGBGB#######----#BGBBBBBGB#----##----#BBBGBGBBB#----##----##-BGBGB-##----##-----##BBBBB##-----##------#######------##--BBBBBBB#---------##--BGBGBGB#---------###-BGBGBGB#--------#####BBBBBBB#-------########################",
+                        remarks: "R/T",
+                        notes: "175K Rng 125K Tri",
                         troop_count: [0,0,175000,125000,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         res_count: [0,0,0,0,1,125000,125000,100000,100000,0,0,0,0,1,0,0,0,0,0,200000,200000,200000,575000]
                      },
@@ -3870,7 +3819,7 @@ function getHighestTrooptype()
                         troop_count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         res_count: [0,0,0,0,1,575000,575000,575000,575000,0,0,0,0,1,0,0,0,0,0,575000,575000,575000,575000]
                     },
-					{
+					          {
                         name: "4sec Horse",
                         string: "[ShareString.1.3]:########################-----JX#-------#####BEBEB-PP#--------###-BEBEB-MS#---------##-BEBEB--S#---------##-BEBEB#######------##-BBBB##BEBEB##-----##---Z##EBEBEBE##----##----#BEBEBEBEB#----##----#BEBEBEBEB#----#######BEBETEBEB#######----#BEBEBEBEB#----##----#BEBEBEBEB#----##----##BBEBEBE##----##-----##BEBEB##-----##------#######------##---------#---------##---------#---------###--------#--------#####-------#-------########################",
                         remarks: "Fast Horse",
@@ -4394,21 +4343,22 @@ function getHighestTrooptype()
         var dat={a:JSON.stringify(aa),b:cdata.cid};
         jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat});
     }
-	function setshipperh(id) {
+    //Mass Set Shipper Target's based on Group Selection
+	  function setshipperh(id) {
     var cityd = {};
     var dat = {'world': '', 'cid': id, 'ai':'0', 'ss':s};
-	var nearesthub = $("#shub").val();
+	  var nearesthub = $("#shub").val();
    	$.ajax({
 			type:'POST',
 			url: 'includes/poll2.php',
 			data: dat,
 			dataType: 'JSON',
-            async: false,
+      async: false,
 			success: function(response) {
             cityd = response;
-			}
-         });
-        var aa = cityd.city.mo;
+		        }
+    });
+    var aa = cityd.city.mo;
 		if ($("#shub").val() == 999)
 		{
 			var hubs={cid:[],distance:[]};
@@ -4423,23 +4373,23 @@ function getHighestTrooptype()
 				hubs.distance.push(Math.sqrt((tempx-cityd.city.x)*(tempx-cityd.city.x)+(tempy-cityd.city.y)*(tempy-cityd.city.y)));
 			}
 			var mindist = Math.min.apply(Math, hubs.distance);
-			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];		
+			var nearesthub=hubs.cid[hubs.distance.indexOf(mindist)];
 		}
-        aa[41]=0;
+    aa[41]=0;
 		if (localStorage.getItem('swood') == 1) {
 			aa[37]=nearesthub;
-		} 
+		}
 		if (localStorage.getItem('sstone') == 1) {
 			aa[38]=nearesthub;
-		} 
+		}
 		if (localStorage.getItem('siron') == 1) {
 			aa[39]=nearesthub;
-		} 
+		}
 		if (localStorage.getItem('sfood') == 1) {
 			aa[40]=nearesthub;
-		}			
-        var dat2={a:JSON.stringify(aa),b:id};
-        jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat2});
+		}
+    var dat2={a:JSON.stringify(aa),b:id};
+    jQuery.ajax({url: 'includes/mnio.php',type: 'POST',aysnc:false,data: dat2});
     }
     //infantry setup
     function setinfantry() {
