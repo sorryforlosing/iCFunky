@@ -3463,7 +3463,7 @@
     // setting layouts
     $(document).ready(function() {
         $("#citynotes").draggable({ handle: ".popUpBar" , containment: "window", scroll: false});
-        $('#citynotes').height('510px');
+        $('#citynotes').height('410px');
         $('#citynotes').width('495px');
         var layoutopttab="<li id='layoutopt' class='ui-state-default ui-corner-top' role='tab' tabindex='-1' aria-controls='layoutoptBody'";
         layoutopttab+="aria-labeledby='ui-id-60' aria-selected='false' aria-expanded='false'>";
@@ -3476,7 +3476,7 @@
         layoutoptbody+="<td> Cabin Lvl: <input id='cablev' type='number' style='width:22px;' value='7'></td></tr><tr><td><input id='addwalls' class='clsubopti' type='checkbox'> Add Walls</td>";
         layoutoptbody+="<td><input id='addhub' class='clsubopti' type='checkbox'> Set Nearest Hub With layout</td></tr>";
         layoutoptbody+="<tbody><tr><td>Select Hubs list: </td><td id='selhublist'></td><td>";
-        layoutoptbody+="<button id='nearhubAp' class='regButton greenb' style='width:100px; margin-left: 10%'>Set Nearest Hub</button><button id='infantryAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Infantry setup</button></td></tr></tbody></table>";
+        layoutoptbody+="<button id='nearhubAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Set Nearest Hub</button><button id='infantryAp' class='regButton greenb' style='width:130px; margin-left: 10%'>Infantry setup</button></td></tr></tbody></table>";
         layoutoptbody+="<table><tbody><tr><td colspan='2'><input id='addres' class='clsubopti' type='checkbox'> Add Resources:</td><td id='buttd' colspan='2'></td></tr></tbody>";
         layoutoptbody+="<tbody><tr><td>wood<input id='woodin' type='number' style='width:100px;' value='200000'></td>";
         layoutoptbody+="<td>stones<input id='stonein' type='number' style='width:100px;' value='220000'></td>";
@@ -3495,10 +3495,9 @@
         shipoptbody+="<table style='height:30px;'><tbody><tr><td style='width:100px;'><input id='shipwood' class='clsubopti' type='checkbox'>wood</td><td style='width:100px;'><input id='shipstone' class='clsubopti' type='checkbox'> stone</td>";
         shipoptbody+="<td style='width:100px;'><input id='shipiron' class='clsubopti' type='checkbox'> iron</td><td style='width:100px;'><input id='shipfood' class='clsubopti' type='checkbox'> food</td></tr>";
         shipoptbody+="</tbody></table></div>";
-        var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:150px;'>Save Res Settings</button></td>";
+        var layoptbut="<button id='layoptBut' class='regButton greenb' style='width:130px; margin-left: 10%'>Save Res Settings</button></td>";
         var tabs = $("#CNtabs").tabs();
         var ul = tabs.find("ul");
-		var clist = [];
         $(shipopttab).appendTo(ul);
         $(layoutopttab).appendTo(ul);
         tabs.tabs("refresh");
@@ -3518,21 +3517,6 @@
 			 alert("Shippers are set");
 			}
 			else {alert("All not supported");}
-        });
-        $("#shub").click(function() {
-          if (clist.length == 0) {
-			  $.each(cotg.player.citylist(0), function(i, value) {
-				  clist.push({"id": i, "name" : value["name"]});
-			  });
-			  clist.sort(comparestring);
-			  clist.unshift({"id": 0, "name": "off"});
-			  clist.unshift({"id": 999, "name": "auto"});
-		  }
-		  if ($('#shub > option').length < 1) {
-			$.each(clist, function(id, value) {
-				$("#shub").append(new Option(value["name"], value["id"]));
-			});
-		  }
         });
         $("#shub").change(function() {
             localStorage.setItem('shub', $("#shub").val());
@@ -3684,6 +3668,20 @@
         if (localStorage.getItem('hublist')) {
           $("#selHub").val(localStorage.getItem('hublist')).change();
         }
+        var clist = [];
+        $('#shub > option').remove();
+			  $.each(cotg.player.citylist(0), function(i, value) {
+				  clist.push({"id": i, "name" : value["name"]});
+			  });
+			  clist.sort(comparestring);
+			  clist.unshift({"id": 0, "name": "off"});
+			  clist.unshift({"id": 999, "name": "auto"});
+
+		    if ($('#shub > option').length < 1) {
+			       $.each(clist, function(id, value) {
+				           $("#shub").append(new Option(value["name"], value["id"]));
+			              });
+		    }
         $("#selHub").change(function() {
           localStorage.setItem('hublist',$("#selHub").val());
         });
