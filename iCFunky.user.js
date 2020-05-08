@@ -141,7 +141,7 @@
                     clc[temp].push($(tempcl[0]).attr("value"));
                 }
                 if (ll > 1) {
-                    for (var j = 1; j < ll; j++) {
+                    for (var j = 0; j < ll; j++) {
                         clc[temp].push($(tempcl[j]).attr("value"));
                     }
                     clc2 = clc;
