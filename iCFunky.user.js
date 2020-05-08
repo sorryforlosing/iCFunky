@@ -5111,7 +5111,7 @@
         }
         var dat2 = {
             a: JSON.stringify(aa),
-            b: id
+            b: cityd.cid
         };
         jQuery.ajax({
             url: 'includes/mnio.php',
