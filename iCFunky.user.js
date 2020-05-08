@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.14
+// @version 1.0.15
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match https://w18.crownofthegods.com
@@ -3433,7 +3433,7 @@
         }
     });
     // recall button in command window
-    function recallraidl100() {
+/*    function recallraidl100() {
         //        var troops = cotg.city.troops();
         var loot;
         var total;
@@ -3488,7 +3488,7 @@
             }
         }
         loop();
-    }
+*/    }
     //carry check in command window
     function carrycheck() {
         //       var troops = cotg.city.troops();
@@ -3765,11 +3765,12 @@
     }
     //raiding part, cancel allt attack part
     $(document).ready(function() {
-        var newbutz = "<div style='float: left; margin-left: 2%;'><button id='newbuttonu' style='font-size:8px; padding: 4px; border-radius: 8px;' class='greenb shRnTr'>Recall(<90%)</button></div>";
+        var newbutz = "<div style='float: left; margin-left: 2%;'><button id='newbuttonu' style='font-size:8px; padding: 4px; border-radius: 8px;' class='greenb shRnTr'>Recall All</button></div>";
         $("#totalTS").before(newbutz);
         $("#newbuttonu").click(function() {
             setTimeout(function() {
-                recallraidl100();
+                //recallraidl100();
+                $('button:contains("Raid Once")').click();
             }, 500);
         });
         $("#totalTS").click(function() {
