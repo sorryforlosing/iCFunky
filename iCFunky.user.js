@@ -3488,7 +3488,8 @@
             }
         }
         loop();
-*/    }
+    }
+*/
     //carry check in command window
     function carrycheck() {
         //       var troops = cotg.city.troops();
