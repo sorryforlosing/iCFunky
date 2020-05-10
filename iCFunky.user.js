@@ -3769,8 +3769,10 @@
     var newbutz = "<div style='float: left; margin-left: 2%;'><button id='newbuttonu' style='font-size:8px; padding: 4px; border-radius: 8px;' class='greenb shRnTr'>Recall All</button></div>";
     $("#totalTS").before(newbutz);
     $("#newbuttonu").click(function() {
-      //recallraidl100();
-      $('button:contains("Raid Once")').click();
+      setTimeout(function() {
+        //recallraidl100();
+        $('button:contains("Raid Once")').click();
+      }, 500);
     });
 
     $("#totalTS").click(function() {
