@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.17
+// @version 1.0.18
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match https://w18.crownofthegods.com
