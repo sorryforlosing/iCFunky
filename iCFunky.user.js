@@ -39,8 +39,8 @@
     cyndros = 0,
     ylanna = 0;
   var buildings = {
-    name: ["forester", "cottage", "storehouse", "quarry", "hideaway", "farmhouse", "cityguardhouse", "barracks", "mine", "trainingground", "marketplace", "townhouse", "sawmill", "stable", "stonemason", "mage_tower", "windmill", "temple", "smelter", "blacksmith", "castle", "port", "port", "port", "shipyard", "shipyard", "shipyard", "townhall", "castle"],
-    bid: [448, 446, 464, 461, 479, 447, 504, 445, 465, 483, 449, 481, 460, 466, 462, 500, 463, 482, 477, 502, "467", 488, 489, 490, 491, 496, 498, 455, 467]
+    name: ["forester", "cottage", "storehouse", "quarry", "hideaway", "farmhouse", "cityguardhouse", "barracks", "mine", "trainingground", "marketplace", "townhouse", "sawmill", "stable", "stonemason", "mage_tower", "windmill", "temple", "smelter", "blacksmith", "castle", "port", "port", "port", "shipyard", "shipyard", "shipyard", "townhall", "castle", "forest", "stone", "iron"],
+    bid: [448, 446, 464, 461, 479, 447, 504, 445, 465, 483, 449, 481, 460, 466, 462, 500, 463, 482, 477, 502, "467", 488, 489, 490, 491, 496, 498, 455, 467, 454, 451, 452]
   };
   var sum = true;
   var bdcountshow = true;
@@ -63,6 +63,7 @@
   var cdata; //city data return
   var wdata; //world data
   var pldata; //players list on server
+  var rdata; //region data
   var pdata; //player data
   var poll2; //poll2data
   var clc = {}; // city lists info
@@ -73,7 +74,7 @@
     x: 0,
     y: 0,
     th: [0],
-    cont: 0
+    cont: 0,
   }; //current city data
   var bosses = {
     name: ["Cyclops", "Andar's Colosseum Challenge", "Dragon", "Romulus and Remus", "Gorgon", "GM Gordy", "Triton"],
@@ -181,6 +182,9 @@
             }
             if (url.indexOf('gPlA.php') != -1) {
               pldata = JSON.parse(this.response);
+            }
+            if (url.indexOf('rMp.php') != -1) {
+              rdata = JSON.parse(this.response);
             }
             if (url.indexOf('poll2.php') != -1) {
               if (poll2) {
@@ -2381,6 +2385,7 @@
     }
     var bdtable = "<table id='bdtable'><tbody><tr>";
     for (var i in currentbd.bid) {
+      city[currentbd.name[i]] = currentbd.count[i];
       if (i < 9 || ((i > 9 && i < 19) || (i > 19 && i < 29))) {
         bdtable += "<td style='text-align:center; width:30px; height:30px;'><div style='background-image: url(/images/city/buildings/icons/" + currentbd.name[i] + ".png); background-size:contain;background-repeat:no-repeat;width:30px; height:30px;'></div>" + Number(currentbd.count[i]) + "</td>";
       }
@@ -4360,6 +4365,7 @@
       $('#dfunkylayout').remove();
       $('#funkylayoutl').remove();
       $('#funkylayoutw').remove();
+      $('#tiletype').remove();
       setTimeout(function() {
         var currentlayout = $('#currentLOtextarea').text();
         for (var i = 20; i < currentlayout.length - 20; i++) {
@@ -4761,6 +4767,19 @@
         $('#removeoverlayGo').after(selectbuttsdf);
         $('#dfunkylayout').after(selectbuttsl);
         $('#funkylayoutl').after(selectbuttsw);
+        var tiletype = "Hill";
+        var tilecount = Math.max(city.forest, city.stone, city.iron);
+        if (city.forest == tilecount) {
+          tiletype = "Forest";
+        }
+        if (city.iron == tilecount) {
+          tiletype = "Iron";
+        }
+        if (cdata.w == 1) {
+          tiletype += " on water";
+        }
+        var tiletypelabel = "<p><span id='tiletype' style='font-size:100%;'>Texture:" + tiletype + "</span></p>";
+        $('#clearresquad').after(tiletypelabel);
         $('#funkylayoutl').change(function() {
           var newlayout = currentlayout;
           for (var j = 1; j < layoutsl.length; j++) {
