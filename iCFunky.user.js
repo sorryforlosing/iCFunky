@@ -4081,14 +4081,17 @@
       clist.push(value["name"].split("-")[0].trim());
     });
     clist.sort();
+    var nameb = "";
     for (var i = 1; i < 300; i++) {
       var name = strfmt.replace("%c", pad(poll2.city.co.toString())).replace("%n", pad(i.toString()));
       if (city.cottage == undefined && city.bdNumber == 100) {
         name = name.replace("%s", "C")
+        nameb = name.replace("%s", "B")
       } else {
         name = name.replace("%s", "B")
+        nameb = name.replace("%s", "C")
       }
-      if (!clist.includes(name)) {
+      if (!clist.includes(name) && !clist.includes(nameb)) {
         return name;
       }
     }
