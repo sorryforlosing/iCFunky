@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.18
+// @version 1.0.19
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match https://w18.crownofthegods.com
@@ -4065,7 +4065,7 @@
     });
     clist.sort();
     for (var i = 1; i < 300; i++) {
-      var name = strfmt.replace("%c", poll2.city.co).replace("%n", pad(i.toString()));
+      var name = strfmt.replace("%c", pad(poll2.city.co.toString())).replace("%n", pad(i.toString()));
       if (!clist.includes(name)) {
         return name;
       }
@@ -4767,12 +4767,11 @@
         $('#removeoverlayGo').after(selectbuttsdf);
         $('#dfunkylayout').after(selectbuttsl);
         $('#funkylayoutl').after(selectbuttsw);
-        var tiletype = "Hill";
-        var tilecount = Math.max(city.forest, city.stone, city.iron);
-        if (city.forest == tilecount) {
+        var tiletype = "";
+        var tilecount = Math.max(city.forest, city.iron);
+        if (city.forest > city.iron) {
           tiletype = "Forest";
-        }
-        if (city.iron == tilecount) {
+        } else {
           tiletype = "Iron";
         }
         if (cdata.w == 1) {
