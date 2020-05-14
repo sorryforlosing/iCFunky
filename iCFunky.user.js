@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.19
+// @version 1.0.20
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match https://w18.crownofthegods.com
@@ -159,6 +159,13 @@
             var url = this.responseURL;
             if (url.indexOf('gC.php') != -1) {
               cdata = JSON.parse(this.response);
+              city = {
+                cid: 0,
+                x: 0,
+                y: 0,
+                th: [0],
+                cont: 0,
+              };
               city.cid = cdata.cid;
               city.th = cdata.th;
               citytc = cdata.th;
@@ -2365,21 +2372,21 @@
     };
     var j;
     var bdtypecount = -1;
-    var bdNumber = -1;
+    city.bdNumber = -1;
 
     for (var i in buildingdata) {
       if (buildings.bid.indexOf(buildingdata[i].bid) > -1) {
         if (currentbd.bid.indexOf(buildingdata[i].bid) > -1) {
           j = currentbd.bid.indexOf(buildingdata[i].bid);
           currentbd.count[j] += 1;
-          bdNumber += 1;
+          city.bdNumber += 1;
         } else {
           bdtypecount += 1;
           j = buildings.bid.indexOf(buildingdata[i].bid);
           currentbd.name[bdtypecount] = buildings.name[j];
           currentbd.bid[bdtypecount] = buildings.bid[j];
           currentbd.count[bdtypecount] += 1;
-          bdNumber += 1;
+          city.bdNumber += 1;
         }
       }
     }
@@ -2396,7 +2403,7 @@
     }
     bdtable += "</tr></tbody></table>";
     $("#bdcountwin").html(bdtable);
-    $("#numbdleft").html(bdNumber);
+    $("#numbdleft").html(city.bdNumber);
   }
   //troop predictor part
   $(document).ready(function() {
@@ -4066,6 +4073,11 @@
     clist.sort();
     for (var i = 1; i < 300; i++) {
       var name = strfmt.replace("%c", pad(poll2.city.co.toString())).replace("%n", pad(i.toString()));
+      if (city.cottage == undefined && city.bdNumber == 100) {
+        name = name.replace("%s", "C")
+      } else {
+        name = name.replace("%s", "B")
+      }
       if (!clist.includes(name)) {
         return name;
       }
@@ -4110,7 +4122,7 @@
     layoutoptbody += "<td>iron<input id='ironin' type='number' style='width:100px;' value='200000'></td>";
     layoutoptbody += "<td>food<input id='foodin' type='number' style='width:100px;' value='350000'></td></tr>";
     layoutoptbody += "</tbody></table>";
-    layoutoptbody += "<table><tbody><tr><td>Suggested Name format. %c=continent %n=unique number<input id='citynfmt' type='text' style='width:100px;'></tr>";
+    layoutoptbody += "<table><tbody><tr><td>Suggested Name format. %c=continent %n=unique number %s=status(C=complete B=building)<input id='citynfmt' type='text' style='width:100px;'></tr>";
     layoutoptbody += "</tbody></table></div>";
     var shipopttab = "<li id='shipopt' class='ui-state-default ui-corner-top' role='tab' tabindex='-1' aria-controls='shipoptBody'";
     shipopttab += "aria-labeledby='ui-id-60' aria-selected='false' aria-expanded='false'>";
@@ -4769,7 +4781,7 @@
         $('#funkylayoutl').after(selectbuttsw);
         var tiletype = "";
         var tilecount = Math.max(city.forest, city.iron);
-        if (city.forest > city.iron) {
+        if ((city.forest !== undefined && city.iron !== undefined) && city.forest > city.iron) {
           tiletype = "Forest";
         } else {
           tiletype = "Iron";
