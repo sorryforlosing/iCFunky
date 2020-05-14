@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.20
+// @version 1.0.21
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match https://w18.crownofthegods.com
@@ -2379,14 +2379,24 @@
         if (currentbd.bid.indexOf(buildingdata[i].bid) > -1) {
           j = currentbd.bid.indexOf(buildingdata[i].bid);
           currentbd.count[j] += 1;
-          city.bdNumber += 1;
+          if (buildingdata[i].bid !== 467 &&
+            buildingdata[i].bid !== 454 &&
+            buildingdata[i].bid !== 451 &&
+            buildingdata[i].bid !== 452) {
+            city.bdNumber += 1;
+          }
         } else {
           bdtypecount += 1;
           j = buildings.bid.indexOf(buildingdata[i].bid);
           currentbd.name[bdtypecount] = buildings.name[j];
           currentbd.bid[bdtypecount] = buildings.bid[j];
           currentbd.count[bdtypecount] += 1;
-          city.bdNumber += 1;
+          if (buildingdata[i].bid !== 467 &&
+            buildingdata[i].bid !== 454 &&
+            buildingdata[i].bid !== 451 &&
+            buildingdata[i].bid !== 452) {
+            city.bdNumber += 1;
+          }
         }
       }
     }
