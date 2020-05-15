@@ -141,7 +141,7 @@
         if (cdata !== undefined && cdata.cg !== undefined && cdata.cg.indexOf(temp) > -1) {
           clc[temp].push($(tempcl[0]).attr("value"));
         }
-        if (ll > 1) {
+        if (ll > 0) {
           for (var j = 0; j < ll; j++) {
             clc[temp].push($(tempcl[j]).attr("value"));
           }
@@ -3583,6 +3583,20 @@
     return maxtype;
   }
 
+  function filteridle() {
+    var noraidcities = [];
+    $.each(clc2[80696], function(i, v) {
+      noraidcities.push(v);
+    });
+    $("#idlebody tr").each(function() {
+      var buttont = $(this).find("button");
+      var bid = buttont.attr('a');
+      if (noraidcities.includes(bid)) {
+        $(this).remove();
+      }
+    });
+  }
+
   function getDugRows() {
     $('#dungloctab th:contains("Distance")').click();
     $('#dungloctab th:contains("Distance")').click();
@@ -3811,6 +3825,11 @@
     $("#raidmantab").click(function() {
       setTimeout(function() {
         getDugRows();
+      }, 1000);
+    });
+    $("#idletrooptab").click(function() {
+      setTimeout(function() {
+        filteridle();
       }, 1000);
     });
     $("#allianceIncomings").parent().click(function() {
