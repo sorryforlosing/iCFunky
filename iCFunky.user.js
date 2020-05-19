@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.21
+// @version 1.0.22
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match        https://*.crownofthegods.com
@@ -3531,19 +3531,20 @@
     return maxtype;
   }
 
-  function filteridle() {
-    var noraidcities = [];
-    $.each(clc[80696], function(i, v) {
-      noraidcities.push(v);
-    });
-    $("#idlebody tr").each(function() {
-      var buttont = $(this).find("button");
-      var bid = buttont.attr('a');
-      if (noraidcities.includes(bid)) {
-        $(this).remove();
-      }
-    });
-  }
+  /*  function filteridle() {
+      var noraidcities = [];
+      $.each(clc[80696], function(i, v) {
+        noraidcities.push(v);
+      });
+      $("#idlebody tr").each(function() {
+        var buttont = $(this).find("button");
+        var bid = buttont.attr('a');
+        if (noraidcities.includes(bid)) {
+          $(this).remove();
+        }
+      });
+    }
+  */
 
   function addCityGroup(gid, id) {
     var dat = {
@@ -3788,11 +3789,11 @@
         getDugRows();
       }, 1000);
     });
-    $("#idletrooptab").click(function() {
-      setTimeout(function() {
-        filteridle();
-      }, 1000);
-    });
+    /*    $("#idletrooptab").click(function() {
+          setTimeout(function() {
+            filteridle();
+          }, 1000);
+        }); */
     $("#allianceIncomings").parent().click(function() {
       setTimeout(function() {
         incomings();
@@ -4329,15 +4330,17 @@
       }
     });
     $("#editspncn").click(function() {
-      jQuery.ajax({
-        url: 'includes/cgS.php',
-        type: 'POST',
-        async: false,
-        data: {
-          a: "[0]",
-          cid: 0
-        }
-      });
+      if ($.isEmptyObject(clc)) {
+        jQuery.ajax({
+          url: 'includes/cgS.php',
+          type: 'POST',
+          async: false,
+          data: {
+            a: "[0]",
+            cid: 0
+          }
+        });
+      }
       $("#selHub").remove();
       $("#shpHub").remove();
       var selhub = $("#organiser").clone(false).attr({
