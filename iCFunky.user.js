@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.22
+// @version 1.0.23
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match        https://*.crownofthegods.com
@@ -2351,12 +2351,14 @@
     var bdtable = "<table id='bdtable'><tbody><tr>";
     for (var i in currentbd.bid) {
       city[currentbd.name[i]] = currentbd.count[i];
-      if (i < 9 || ((i > 9 && i < 19) || (i > 19 && i < 29))) {
-        bdtable += "<td style='text-align:center; width:30px; height:30px;'><div style='background-image: url(/images/city/buildings/icons/" + currentbd.name[i] + ".png); background-size:contain;background-repeat:no-repeat;width:30px; height:30px;'></div>" + Number(currentbd.count[i]) + "</td>";
-      }
-      if (i == 9 || i == 19) {
-        bdtable += "</tr><tr>";
-        bdtable += "<td style='text-align:center; width:30px; height:30px;'><div style='background-image: url(/images/city/buildings/icons/" + currentbd.name[i] + ".png); background-size:contain;background-repeat:no-repeat;width:30px; height:30px;'></div>" + Number(currentbd.count[i]) + "</td>";
+      if (currentbd.name[i] !== "forest" && currentbd.name[i] !== "stone" && currentbd.name[i] !== "iron" && currentbd.name[i] !== "") {
+        if (i < 9 || ((i > 9 && i < 19) || (i > 19 && i < 29))) {
+          bdtable += "<td style='text-align:center; width:30px; height:30px;'><div style='background-image: url(/images/city/buildings/icons/" + currentbd.name[i] + ".png); background-size:contain;background-repeat:no-repeat;width:30px; height:30px;'></div>" + Number(currentbd.count[i]) + "</td>";
+        }
+        if (i == 9 || i == 19) {
+          bdtable += "</tr><tr>";
+          bdtable += "<td style='text-align:center; width:30px; height:30px;'><div style='background-image: url(/images/city/buildings/icons/" + currentbd.name[i] + ".png); background-size:contain;background-repeat:no-repeat;width:30px; height:30px;'></div>" + Number(currentbd.count[i]) + "</td>";
+        }
       }
     }
     bdtable += "</tr></tbody></table>";
@@ -4149,7 +4151,7 @@
     $("#chgnamBut").click(function() {
       var citynfmt = localStorage.getItem('citynfmt');
       $("#CNameChange").val(getnextname(citynfmt));
-      addCityGroup(89543, cdata.cid);
+      //addCityGroup(89543, cdata.cid);
     });
     $("#setshipper").click(function() {
       if ($("#shpHub option:selected").text() !== "All") {
