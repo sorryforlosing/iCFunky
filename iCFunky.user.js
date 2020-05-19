@@ -171,7 +171,7 @@
                 poll2.OGA = saveoga;
               }
               if ('bd' in poll2.city) {
-                makebuildcount();
+                buildingdata = poll2.city.bd
               }
               if ($("#warcouncTabs").tabs("option", "active") == 2) {
                 var idle = "<table id='idleunits' class='beigetablescrollp'><tbody><tr><td style='text-align: center;'><span>Idle troops:</span></td>";
@@ -310,7 +310,7 @@
     jQuery.ajax({
       url: 'includes/gaLoy.php',
       type: 'POST',
-      aysnc: false,
+      async: true,
       success: function(data) {
         var ldata = JSON.parse(data);
         setloyal(ldata);
@@ -419,7 +419,7 @@
       jQuery.ajax({
         url: 'includes/gC.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         data: dat
       });
     }, 5000);
@@ -594,7 +594,7 @@
       jQuery.ajax({
         url: 'includes/gIDl.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var thdata = JSON.parse(data);
           $("#returnAll").remove();
@@ -821,7 +821,7 @@
       jQuery.ajax({
         url: 'overview/trpover.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var t = JSON.parse(data);
           neardeftable(t);
@@ -832,7 +832,7 @@
       jQuery.ajax({
         url: 'overview/trpover.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var t = JSON.parse(data);
           nearofftable(t);
@@ -2235,7 +2235,7 @@
               jQuery.ajax({
                 url: 'includes/gPi.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: {
                   a: pname
                 },
@@ -3554,7 +3554,7 @@
     jQuery.ajax({
       url: 'includes/cgS.php',
       type: 'POST',
-      aysnc: false,
+      async: true,
       data: dat
     });
   }
@@ -3839,7 +3839,7 @@
               jQuery.ajax({
                 url: 'includes/UaO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3857,7 +3857,7 @@
               jQuery.ajax({
                 url: 'includes/UpO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3881,7 +3881,7 @@
               jQuery.ajax({
                 url: 'includes/UaO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3899,7 +3899,7 @@
               jQuery.ajax({
                 url: 'includes/UpO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3923,7 +3923,7 @@
               jQuery.ajax({
                 url: 'includes/UaO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3941,7 +3941,7 @@
               jQuery.ajax({
                 url: 'includes/UpO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3965,7 +3965,7 @@
               jQuery.ajax({
                 url: 'includes/UaO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3983,7 +3983,7 @@
               jQuery.ajax({
                 url: 'includes/UpO.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -3997,7 +3997,7 @@
     jQuery.ajax({
       url: 'includes/gaLoy.php',
       type: 'POST',
-      aysnc: false,
+      async: true,
       success: function(data) {
         var ldata = JSON.parse(data);
         setloyal(ldata);
@@ -4894,7 +4894,7 @@
               jQuery.ajax({
                 url: 'includes/mnio.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
 
@@ -4995,7 +4995,7 @@
               jQuery.ajax({
                 url: 'includes/mnio.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -5095,7 +5095,7 @@
               jQuery.ajax({
                 url: 'includes/mnio.php',
                 type: 'POST',
-                aysnc: false,
+                async: true,
                 data: dat
               });
             }
@@ -5160,7 +5160,7 @@
     jQuery.ajax({
       url: 'includes/mnio.php',
       type: 'POST',
-      aysnc: false,
+      async: true,
       data: dat
     });
   }
@@ -5206,7 +5206,7 @@
     jQuery.ajax({
       url: 'includes/mnio.php',
       type: 'POST',
-      aysnc: false,
+      async: true,
       data: dat2
     });
   }
@@ -5283,7 +5283,7 @@
     jQuery.ajax({
       url: 'includes/mnio.php',
       type: 'POST',
-      aysnc: false,
+      async: true,
       data: dat
     });
   }
@@ -5357,7 +5357,7 @@
       jQuery.ajax({
         url: 'overview/citover.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var sumres = JSON.parse(data);
           updateres(sumres);
@@ -5373,7 +5373,7 @@
       jQuery.ajax({
         url: 'overview/citover.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var sumres = JSON.parse(data);
           $.each(sumres, function() {
@@ -5383,7 +5383,7 @@
           jQuery.ajax({
             url: 'overview/trpover.php',
             type: 'POST',
-            aysnc: false,
+            async: true,
             success: function(data) {
               var troopsres = JSON.parse(data);
               updatetroops(troopsres, notes);
@@ -5396,7 +5396,7 @@
       jQuery.ajax({
         url: 'overview/rreps.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var raids = JSON.parse(data);
           updateraids(raids, $("#raidsturnc").val());
@@ -5411,7 +5411,7 @@
       jQuery.ajax({
         url: 'overview/citover.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var sumres = JSON.parse(data);
           $.each(sumres, function() {
@@ -5421,7 +5421,7 @@
           jQuery.ajax({
             url: 'overview/graid.php',
             type: 'POST',
-            aysnc: false,
+            async: true,
             success: function(data) {
               var raids = JSON.parse(data);
               updateraidover(raids, notes);
@@ -5434,7 +5434,7 @@
       jQuery.ajax({
         url: 'overview/reinover.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         success: function(data) {
           var support = JSON.parse(data);
           updatesupport(support);
@@ -5533,7 +5533,7 @@
       jQuery.ajax({
         url: 'overview/rcallall.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         data: dat
       });
       $(this).remove();
@@ -5593,7 +5593,7 @@
       jQuery.ajax({
         url: 'overview/reinreca.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         data: dat
       });
       $(this).remove();
@@ -5609,7 +5609,7 @@
       jQuery.ajax({
         url: 'overview/reinrecall.php',
         type: 'POST',
-        aysnc: false,
+        async: true,
         data: dat
       });
       $(this).remove();
