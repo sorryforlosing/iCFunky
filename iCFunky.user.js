@@ -4,11 +4,7 @@
 // @version 1.0.21
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
-// @match https://w18.crownofthegods.com
-// @match https://w19.crownofthegods.com
-// @match https://w20.crownofthegods.com
-// @include https://w/*.crownofthegods.com/World*
-// @grant none
+// @match        https://*.crownofthegods.com
 // @updateURL https://github.com/sorryforlosing/iCFunky/raw/master/iCFunky.user.js
 // @downloadURL https://github.com/sorryforlosing/iCFunky/raw/master/iCFunky.user.js
 // ==/UserScript==
@@ -63,11 +59,9 @@
   var cdata; //city data return
   var wdata; //world data
   var pldata; //players list on server
-  var rdata; //region data
   var pdata; //player data
   var poll2; //poll2data
   var clc = {}; // city lists info
-  var clc2 = {};
   var oga; //city outgoing attacks info
   var city = {
     cid: 0,
@@ -127,30 +121,6 @@
   var buildingdata;
   var coofz;
   var coon;
-  //getting city lists
-  $(document).ready(function() {
-    setTimeout(function() {
-      var a = $("#organiser > option");
-      var l = a.length;
-      for (var i = 0; i < l; i++) {
-        var temp = String($(a[i]).attr("value"));
-        $("#organiser").val(temp).change();
-        clc[temp] = [];
-        var tempcl = $("#cityDropdownMenu > option");
-        var ll = tempcl.length;
-        if (cdata !== undefined && cdata.cg !== undefined && cdata.cg.indexOf(temp) > -1) {
-          clc[temp].push($(tempcl[0]).attr("value"));
-        }
-        if (ll > 0) {
-          for (var j = 0; j < ll; j++) {
-            clc[temp].push($(tempcl[j]).attr("value"));
-          }
-          clc2 = clc;
-        }
-      }
-      $("#organiser").val("all").change();
-    }, 4000);
-  });
   setTimeout(function() {
     (function(open) {
       XMLHttpRequest.prototype.open = function() {
@@ -159,13 +129,7 @@
             var url = this.responseURL;
             if (url.indexOf('gC.php') != -1) {
               cdata = JSON.parse(this.response);
-              city = {
-                cid: 0,
-                x: 0,
-                y: 0,
-                th: [0],
-                cont: 0,
-              };
+              city = {};
               city.cid = cdata.cid;
               city.th = cdata.th;
               citytc = cdata.th;
@@ -190,14 +154,12 @@
             if (url.indexOf('gPlA.php') != -1) {
               pldata = JSON.parse(this.response);
             }
-            if (url.indexOf('rMp.php') != -1) {
-              rdata = JSON.parse(this.response);
+            if (url.indexOf('cgS.php') != -1) {
+              clc = JSON.parse(this.response);
             }
             if (url.indexOf('poll2.php') != -1) {
               if (poll2) {
-                var saveclc = poll2.player.clc;
                 var saveoga = poll2.OGA;
-                clc = poll2.player.clc;
               }
               poll2 = JSON.parse(this.response);
               city.x = Number(poll2.city.cid % 65536);
@@ -210,11 +172,6 @@
               }
               if ('bd' in poll2.city) {
                 makebuildcount();
-              }
-              if ('clc' in poll2.player) {
-
-              } else {
-                poll2.player.clc = saveclc;
               }
               if ($("#warcouncTabs").tabs("option", "active") == 2) {
                 var idle = "<table id='idleunits' class='beigetablescrollp'><tbody><tr><td style='text-align: center;'><span>Idle troops:</span></td>";
@@ -454,14 +411,6 @@
         ttspeedres[17] += ((Number(domdisfaith) * 0.5) / 100) + (Number(Res[research[14]]) / 100);
       }, 2000);
     }
-    jQuery.ajax({
-      url: 'includes/pD.php',
-      type: 'POST',
-      aysnc: false,
-      success: function(data) {
-        pdata = JSON.parse(data);
-      }
-    });
     setTimeout(function() {
       var cid = $("#cityDropdownMenu").val();
       var dat = {
@@ -600,7 +549,6 @@
         $("#dret").show();
       }
     });
-
     if (localStorage.getItem('attperc')) {
       $("#perc").val(localStorage.getItem('attperc'));
     } else {
@@ -3585,7 +3533,7 @@
 
   function filteridle() {
     var noraidcities = [];
-    $.each(clc2[80696], function(i, v) {
+    $.each(clc[80696], function(i, v) {
       noraidcities.push(v);
     });
     $("#idlebody tr").each(function() {
@@ -3597,15 +3545,15 @@
     });
   }
 
-  function addCityGroup(gid, cid) {
+  function addCityGroup(gid, id) {
     var dat = {
       a: "[" + gid.toString() + "]",
-      b: cid
+      cid: id
     };
     jQuery.ajax({
       url: 'includes/cgS.php',
       type: 'POST',
-      aysnc: true,
+      aysnc: false,
       data: dat
     });
   }
@@ -4205,7 +4153,7 @@
     $("#setshipper").click(function() {
       if ($("#shpHub option:selected").text() !== "All") {
         var hubid = $("#shpHub").val();
-        $.each(clc2[hubid], function(i, value) {
+        $.each(clc[hubid], function(i, value) {
           setshipperh(value);
         });
         alert("Shippers are set");
@@ -4381,6 +4329,15 @@
       }
     });
     $("#editspncn").click(function() {
+      jQuery.ajax({
+        url: 'includes/cgS.php',
+        type: 'POST',
+        async: false,
+        data: {
+          a: "[0]",
+          cid: 0
+        }
+      });
       $("#selHub").remove();
       $("#shpHub").remove();
       var selhub = $("#organiser").clone(false).attr({
@@ -5213,7 +5170,7 @@
         cid: [],
         distance: []
       };
-      $.each(clc2, function(key, value) {
+      $.each(clc, function(key, value) {
         if (key == $("#selHub").val()) {
           hubs.cid = value;
         }
