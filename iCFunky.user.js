@@ -2379,7 +2379,7 @@
         if (currentbd.bid.indexOf(buildingdata[i].bid) > -1) {
           j = currentbd.bid.indexOf(buildingdata[i].bid);
           currentbd.count[j] += 1;
-          if (buildingdata[i].bid !== 467 &&
+          if (buildingdata[i].bid !== 453 &&
             buildingdata[i].bid !== 454 &&
             buildingdata[i].bid !== 451 &&
             buildingdata[i].bid !== 452) {
@@ -2391,7 +2391,7 @@
           currentbd.name[bdtypecount] = buildings.name[j];
           currentbd.bid[bdtypecount] = buildings.bid[j];
           currentbd.count[bdtypecount] += 1;
-          if (buildingdata[i].bid !== 467 &&
+          if (buildingdata[i].bid !== 453 &&
             buildingdata[i].bid !== 454 &&
             buildingdata[i].bid !== 451 &&
             buildingdata[i].bid !== 452) {
@@ -3597,6 +3597,19 @@
     });
   }
 
+  function addCityGroup(gid, cid) {
+    var dat = {
+      a: "[" + gid.toString() + "]",
+      b: cid
+    };
+    jQuery.ajax({
+      url: 'includes/cgS.php',
+      type: 'POST',
+      aysnc: true,
+      data: dat
+    });
+  }
+
   function getDugRows() {
     $('#dungloctab th:contains("Distance")').click();
     $('#dungloctab th:contains("Distance")').click();
@@ -4097,18 +4110,20 @@
   function getnextname(strfmt) {
     var clist = [];
     $.each(cotg.player.citylist(0), function(index, value) {
-      clist.push(value["name"].split("-")[0].trim());
+      if (value["name"].split("-")[0].trim() !== poll2.city.citn) {
+        clist.push(value["name"].split("-")[0].trim());
+      }
     });
     clist.sort();
     var nameb = "";
     for (var i = 1; i < 300; i++) {
       var name = strfmt.replace("%c", pad(poll2.city.co.toString())).replace("%n", pad(i.toString()));
       if (city.cottage == undefined && city.bdNumber == 100) {
-        name = name.replace("%s", "C")
         nameb = name.replace("%s", "B")
+        name = name.replace("%s", "C")
       } else {
-        name = name.replace("%s", "B")
         nameb = name.replace("%s", "C")
+        name = name.replace("%s", "B")
       }
       if (!clist.includes(name) && !clist.includes(nameb)) {
         return name;
@@ -4185,6 +4200,7 @@
     $("#chgnamBut").click(function() {
       var citynfmt = localStorage.getItem('citynfmt');
       $("#CNameChange").val(getnextname(citynfmt));
+      addCityGroup(89543, cdata.cid);
     });
     $("#setshipper").click(function() {
       if ($("#shpHub option:selected").text() !== "All") {
@@ -4898,12 +4914,17 @@
               if ($("#addbuildings").prop("checked") == true) {
                 var i;
                 for (i = 0; i < 8; i++) {
-                  aa[i] = 1;
+                  if (remarksl[j] !== "Cabins") {
+                    aa[i] = 1;
+                  } else {
+                    aa[i] = 0;
+                  }
                 }
                 for (i = 52; i < 75; i++) {
                   aa[i] = [1, 10];
                 }
                 aa[51] = [1, $("#cablev").val()];
+                aa[1] = 1;
               }
 
               var dat = {
@@ -4994,11 +5015,16 @@
               if ($("#addbuildings").prop("checked") == true) {
                 var i;
                 for (i = 0; i < 8; i++) {
-                  aa[i] = 1;
+                  if (remarksw[j] !== "Cabins") {
+                    aa[i] = 1;
+                  } else {
+                    aa[i] = 0;
+                  }
                 }
                 for (i = 52; i < 75; i++) {
                   aa[i] = [1, 10];
                 }
+                aa[1] = 1;
                 aa[51] = [1, $("#cablev").val()];
               }
               //var aaa=JSON.stringify(aa);
@@ -5090,11 +5116,16 @@
               if ($("#addbuildings").prop("checked") == true) {
                 var i;
                 for (i = 0; i < 8; i++) {
-                  aa[i] = 1;
+                  if (remarkdf[j] !== "Cabins") {
+                    aa[i] = 1;
+                  } else {
+                    aa[i] = 0;
+                  }
                 }
                 for (i = 52; i < 75; i++) {
                   aa[i] = [1, 10];
                 }
+                aa[1] = 1;
                 aa[51] = [1, $("#cablev").val()];
               }
               var dat = {
