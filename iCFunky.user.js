@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.23
+// @version 1.0.24
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match        https://*.crownofthegods.com
@@ -161,6 +161,7 @@
               if (poll2) {
                 var saveoga = poll2.OGA;
               }
+              makebuildcount();
               poll2 = JSON.parse(this.response);
               city.x = Number(poll2.city.cid % 65536);
               city.y = Number((poll2.city.cid - city.x) / 65536);
