@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.26
+// @version 1.0.27
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match        https://*.crownofthegods.com
@@ -192,6 +192,9 @@
               }
               if ('bd' in poll2.city) {
                 buildingdata = poll2.city.bd
+              }
+              if ('th' in poll2.city) {
+                city.th = poll2.city.th;
               }
               if ($("#warcouncTabs").tabs("option", "active") == 2) {
                 var idle = "<table id='idleunits' class='beigetablescrollp'><tbody><tr><td style='text-align: center;'><span>Idle troops:</span></td>";
