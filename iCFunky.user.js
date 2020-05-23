@@ -184,6 +184,7 @@
               city.x = Number(poll2.city.cid % 65536);
               city.y = Number((poll2.city.cid - city.x) / 65536);
               city.cont = Number(Math.floor(city.x / 100) + 10 * Math.floor(city.y / 100));
+              city.mo = poll2.city.mo;
               if ('OGA' in poll2) {
 
               } else {
