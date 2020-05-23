@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Cotg iCFunky
 // @namespace https://github.com/sorryforlosing/iCFunky
-// @version 1.0.24
+// @version 1.0.25
 // @description Cotg CFunky, DFunky, MFunky, iCFunky
 // @author Cfunky, Dhruv, Mohnki, Innuendo
 // @match        https://*.crownofthegods.com
@@ -138,6 +138,24 @@
               city.y = Number((city.cid - city.x) / 65536);
               city.cont = Number(Math.floor(city.x / 100) + 10 * Math.floor(city.y / 100));
               city.mo = cdata.mo;
+              //Greety --Add City coords to page
+              var leftover = document.getElementById('citcoordspq');
+              if (typeof(leftover) != 'undefined' && leftover != null) {
+                leftover.remove();
+                var cityName = document.getElementById('citnamqcont');
+                var cityCoordsSpan = document.createElement('SPAN');
+                cityCoordsSpan.setAttribute('id', 'citcoordspq');
+                var cityCoords = document.createTextNode(city.x + ':' + city.y);
+                cityCoordsSpan.appendChild(cityCoords);
+                cityName.appendChild(cityCoordsSpan);
+              } else {
+                var cityName = document.getElementById('citnamqcont');
+                var cityCoordsSpan = document.createElement('SPAN');
+                cityCoordsSpan.setAttribute('id', 'citcoordspq');
+                var cityCoords = document.createTextNode(city.x + ':' + city.y);
+                cityCoordsSpan.appendChild(cityCoords);
+                cityName.appendChild(cityCoordsSpan);
+              }
               setTimeout(function() {
                 updateattack();
                 updatedef();
@@ -4880,14 +4898,19 @@
                   if (remarksl[j] !== "Cabins") {
                     aa[i] = 1;
                   } else {
-                    aa[i] = 0;
+                    aa[i] = 0; //Don't build anything if doing cabins
                   }
                 }
                 for (i = 52; i < 75; i++) {
-                  aa[i] = [1, 10];
+                  if (i == 70 && remarksl[j] == "Cabins") {
+                    aa[i] = [1, 3] //Balista to lvl 3 if doing cabins
+                  } else {
+                    aa[i] = [1, 10];
+                  }
                 }
                 aa[51] = [1, $("#cablev").val()];
                 aa[1] = 1;
+                aa[7] = 1;
               }
 
               var dat = {
@@ -4985,9 +5008,14 @@
                   }
                 }
                 for (i = 52; i < 75; i++) {
-                  aa[i] = [1, 10];
+                  if (i == 70 && remarksw[j] == "Cabins") {
+                    aa[i] = [1, 3]
+                  } else {
+                    aa[i] = [1, 10];
+                  }
                 }
                 aa[1] = 1;
+                aa[7] = 1;
                 aa[51] = [1, $("#cablev").val()];
               }
               //var aaa=JSON.stringify(aa);
@@ -5086,9 +5114,14 @@
                   }
                 }
                 for (i = 52; i < 75; i++) {
-                  aa[i] = [1, 10];
+                  if (i == 70 && remarkdf[j] == "Cabins") {
+                    aa[i] = [1, 3]
+                  } else {
+                    aa[i] = [1, 10];
+                  }
                 }
                 aa[1] = 1;
+                aa[7] = 1;
                 aa[51] = [1, $("#cablev").val()];
               }
               var dat = {
