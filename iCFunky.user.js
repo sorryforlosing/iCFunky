@@ -176,19 +176,13 @@
               clc = JSON.parse(this.response);
             }
             if (url.indexOf('poll2.php') != -1) {
-              if (poll2) {
-                var saveoga = poll2.OGA;
-              }
-              makebuildcount();
               poll2 = JSON.parse(this.response);
               city.x = Number(poll2.city.cid % 65536);
               city.y = Number((poll2.city.cid - city.x) / 65536);
               city.cont = Number(Math.floor(city.x / 100) + 10 * Math.floor(city.y / 100));
               city.mo = poll2.city.mo;
               if ('OGA' in poll2) {
-
-              } else {
-                poll2.OGA = saveoga;
+                oga = poll2.OGA;
               }
               if ('bd' in poll2.city) {
                 buildingdata = poll2.city.bd
@@ -196,6 +190,7 @@
               if ('th' in poll2.city) {
                 city.th = poll2.city.th;
               }
+              makebuildcount();
               if ($("#warcouncTabs").tabs("option", "active") == 2) {
                 var idle = "<table id='idleunits' class='beigetablescrollp'><tbody><tr><td style='text-align: center;'><span>Idle troops:</span></td>";
                 for (var i in poll2.city.th) {
@@ -275,12 +270,13 @@
   }
   //getting date
   function getFormattedDate(date) {
-    var year = date.getFullYear();
-    var month = (1 + date.getMonth()).toString();
-    month = month.length > 1 ? month : '0' + month;
+    var month = (date.getMonth() + 1).toString(); //getMonth starts at 0
     var day = date.getDate().toString();
-    day = day.length > 1 ? day : '0' + day;
-    return month + '/' + day + '/' + year;
+    var year = date.getFullYear().toString();
+    var hours = date.getHours().toString();
+    var mins = date.getMinutes().toString();
+    var secs = date.getSeconds().toString();
+    return pad(month) + '/' + pad(day) + '/' + year + " " + pad(hours) + ":" + pad(mins) + ":" + pad(secs);
   }
   //rounds nubers to second digit after decimal
   function roundToTwo(num) {
@@ -1289,7 +1285,6 @@
     dloop();
 
     function art() { //setting return time for raids according to city view outgoing list
-      //console.log(poll2.OGA);
       $("#commandsPopUpBox").hide();
       if (defobj.ret == 1) {
         jQuery(".toptdinncommtbl1:first")[0].click();
@@ -1298,12 +1293,12 @@
         }, 500);
         var minddate = new Date();
         var first = true;
-        for (var i in poll2.OGA) {
-          //console.log(targets.cstr,poll2.OGA[i][5]);
-          if (targets.cstr.indexOf(poll2.OGA[i][5]) > -1) {
+        for (var i in oga) {
+          //console.log(targets.cstr,oga[i][5]);
+          if (targets.cstr.indexOf(oga[i][5]) > -1) {
             if (first) {
               first = false;
-              var a = poll2.OGA[i][6].substr(30);
+              var a = oga[i][6].substr(30);
               var b = a.substr(0, a.indexOf('<'));
               var time = b.split(" ");
               var ttime = time[2].split(":");
@@ -1318,10 +1313,10 @@
                 var ddate = time[1].split("/");
                 //console.log(ddate);
                 minddate.setDate(Number(ddate[1]));
-                minddate.setMonth(Number(ddate[0]));
+                minddate.setMonth(Number(ddate[0] - 1));
               }
             } else {
-              var a = poll2.OGA[i][6].substr(30);
+              var a = oga[i][6].substr(30);
               var b = a.substr(0, a.indexOf('<'));
               var time = b.split(" ");
               var ttime = time[2].split(":");
@@ -1336,7 +1331,7 @@
                 var ddate = time[1].split("/");
                 //console.log(ddate);
                 d.setDate(ddate[1]);
-                d.setMonth(ddate[0]);
+                d.setMonth(ddate[0] - 1);
               }
               //console.log(d,minddate);
               if (d < minddate) {
@@ -1346,21 +1341,9 @@
           }
         }
         minddate.setHours(minddate.getHours() - defobj.rettime);
-        //console.log(minddate);
-        var hour = minddate.getHours();
-        if (hour < 10) {
-          hour = "0" + hour;
-        }
-        var min = minddate.getMinutes();
-        if (min < 10) {
-          min = "0" + min;
-        }
-        var sec = minddate.getSeconds();
-        if (sec < 10) {
-          sec = "0" + sec;
-        }
-        var retdate = getFormattedDate(minddate) + " " + hour + ":" + min + ":" + sec;
-        //console.log(retdate);
+        console.log(minddate);
+        var retdate = getFormattedDate(minddate);
+        console.log(retdate);
         $("#raidrettimesela").val(3).change();
         $("#raidrettimeselinp").val(retdate);
         jQuery("#doneOGAll")[0].click();
@@ -1934,7 +1917,7 @@
     loop();
 
     function art() { //setting return time for raids according to city view attacks list
-      //console.log(poll2.OGA);
+      //console.log(oga);
       $("#commandsPopUpBox").hide();
       if ($("#retcheck").prop("checked") == true) {
         jQuery(".toptdinncommtbl1:first")[0].click();
@@ -1943,12 +1926,12 @@
         }, 500);
         var minddate = new Date();
         var first = true;
-        for (var i in poll2.OGA) {
-          //console.log(targets.cstr,poll2.OGA[i][5]);
-          if (targets.cstr.indexOf(poll2.OGA[i][5]) > -1) {
+        for (var i in oga) {
+          //console.log(targets.cstr,oga[i][5]);
+          if (targets.cstr.indexOf(oga[i][5]) > -1) {
             if (first) {
               first = false;
-              var a = poll2.OGA[i][6].substr(30);
+              var a = oga[i][6].substr(30);
               var b = a.substr(0, a.indexOf('<'));
               var time = b.split(" ");
               var ttime = time[2].split(":");
@@ -1967,7 +1950,7 @@
                 //console.log(minddate);
               }
             } else {
-              var a = poll2.OGA[i][6].substr(30);
+              var a = oga[i][6].substr(30);
               var b = a.substr(0, a.indexOf('<'));
               var time = b.split(" ");
               var ttime = time[2].split(":");
@@ -1994,19 +1977,7 @@
         }
         minddate.setHours(minddate.getHours() - Number($("#retHr").val()));
         //console.log(minddate);
-        var hour = minddate.getHours();
-        if (hour < 10) {
-          hour = "0" + hour;
-        }
-        var min = minddate.getMinutes();
-        if (min < 10) {
-          min = "0" + min;
-        }
-        var sec = minddate.getSeconds();
-        if (sec < 10) {
-          sec = "0" + sec;
-        }
-        var retdate = getFormattedDate(minddate) + " " + hour + ":" + min + ":" + sec;
+        var retdate = getFormattedDate(minddate);
         //console.log(retdate);
         $("#raidrettimesela").val(3).change();
         $("#raidrettimeselinp").val(retdate);
